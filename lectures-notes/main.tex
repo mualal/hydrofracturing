@@ -1,0 +1,129 @@
+% !TeX spellcheck = en_US
+% !TeX program = xelatex
+
+\documentclass[a4paper,12pt]{article}
+\renewcommand{\baselinestretch}{1.2}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A, T1]{fontenc}
+\usepackage[english, russian]{babel}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage{setspace, amsmath}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{epsfig}
+\usepackage{pdfpages}
+
+\makeatletter
+\let\@fnsymbol\@arabic
+\makeatother
+
+\usepackage{geometry}
+\geometry{
+a4paper,
+total={170mm, 257mm},
+left=20mm,
+top=20mm,
+}
+
+\usepackage{systeme}
+\usepackage{skak}
+\usepackage{mathtools}
+\usepackage{unicode-math}
+\usepackage{array}
+\usepackage{makecell}
+\usepackage{subfiles}
+\usepackage{hyperref}
+\hypersetup{pdfstartview=FitH, linkcolor=black, urlcolor=blue, colorlinks=true}
+\usepackage{framed}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{color}
+\usepackage{chngcntr}
+\usepackage{tikz}
+\usepackage{csquotes}
+\usepackage{fancyhdr}
+\usepackage{fancyvrb}
+\usepackage{comment}
+\usepackage{adjustbox}
+\usepackage[breakable, skins]{tcolorbox}
+\allowdisplaybreaks
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\hyperlink{page.1}{\textcolor{violet}{Вернуться к содержанию}}}
+%\fancyhead[L]{\leftmark \\ \rightmark}
+%\fancyhead[R]{\thepage}
+%\fancyhead[R]{\rightmark}
+\fancyfoot[C]{\thepage}
+%\fancyfoot[L]{\rightmark}
+
+\usepackage{float}
+\floatstyle{plaintop}
+\usepackage{enumitem}
+\setlength{\parindent}{0pt}
+%\setcounter{section}{-1}
+
+%\graphicspath{{./img/}}
+\newcommand{\myPictWidth}{.95\textwidth}
+\newcommand{\phm}{\phantom{-}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\numberwithin{equation}{section}
+
+\newenvironment{eclrun}
+{\VerbatimEnvironment
+\begin{tcolorbox}[breakable,boxrule=0.5pt,colframe=gray!50]
+\begin{Verbatim}
+}
+{
+\end{Verbatim}	
+\end{tcolorbox}
+}
+
+\begin{document}
+	\subfile{parts/general_info}
+	\tableofcontents
+	\title{Гидроразрыв пласта\\Конспект лекций и семинаров}
+	\author{Муравцев А.А.\thanks{конспектирует; email: almuravcev@yandex.ru}
+	\and
+	Донцов Е.В.\thanks{W.D. Von Gonten Laboratories, Houston, USA}
+	\and
+	Валов А.В.\thanks{Институт гидродинамики им. М.А.Лаврентьева СО РАН}
+	\and
+	Байкин А.Н\thanks{Новосибирский государственный университет, Россия}
+	}
+	\maketitle
+	\subfile{parts/2021_02_16}
+	\newpage
+	\subfile{parts/2021_03_02}
+	\newpage
+	\subfile{parts/2021_03_09}
+	\newpage
+	\subfile{parts/2021_03_16}
+	\newpage
+	\subfile{parts/2021_03_23}
+	\newpage
+	\subfile{parts/2021_04_02}
+	\newpage
+	\subfile{parts/2021_04_08}
+	\newpage
+	\subfile{parts/2021_04_13}
+	\newpage
+	\subfile{parts/2021_04_20}
+	\newpage
+	\subfile{parts/2021_04_27}
+	\newpage
+	\subfile{parts/2021_04_30}
+	\newpage
+	\subfile{parts/2021_05_11}
+	\newpage
+	\subfile{parts/2021_05_18}
+	\newpage
+	\subfile{parts/task_1}
+	\newpage
+	
+\end{document}
