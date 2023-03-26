@@ -121,7 +121,7 @@ def fcn_b_radial(
     lam = fcn_lam_radial(kh, ch, alpha)
     
     b0 = lambda x, p1, p2: beta(p1, p2) * (1 - betainc(p1, p2, x))
-    b = 2**(1+delt) * (b0(1/2, lam+1, 2+delt)+b0(1/2, lam+2, 1+delt)) + ch * alpha**(3/2)*beta(2*alpha,3/2)
+    b = 2**(1+delt) * (-b0(1/2, lam+1, 2+delt)+b0(1/2, lam+2, 1+delt)) + ch * alpha**(3/2)*beta(2*alpha,3/2)
 
     return b
 
@@ -162,7 +162,7 @@ def fcn_press_calc(
     
     m = fcn_m_radial(rrho, s+ds/2) - fcn_m_radial(rrho, s-ds/2)
     
-    p = np.matmul(m, w / (2 * np.pi))
+    p = np.matmul(m.T, w / (2 * np.pi))
 
     return p
 
@@ -324,7 +324,7 @@ def main():
     e_p = 10 * 1e9  # Па
     mu_p = 0.1  # Па*с
     k_p = 1 * 1e6  # Па*м^(1/2)
-    c_p = 1e-6  # м / с^(1/2)
+    c_p = 1e-6  # м/с^(1/2)
     t = 1e3  # с
     q_0 = 0.001  # м^3/с
     h = 1  # м
@@ -346,18 +346,24 @@ def main():
         case 3:
             col = 'm'
     
-    fig, ax = plt.subplots(nrows=2, ncols=1, figsize=(4, 8))
+    fig, ax = plt.subplots(nrows=2, ncols=1, figsize=(8, 7))
     #fig.tight_layout(h_pad=2)
     #ax[1].fmt_ydata = (lambda x: '$%1.1fM' % (x*1e-6))
     ax[0].plot(r * rho, w, 'k')
     ax[0].plot(r_v[vertex_index] * rho_v, w_v[:, vertex_index], '--', color=col)
     ax[0].set_xlabel('Координата x, м')
     ax[0].set_ylabel('Раскрытие w, м')
+    ax[0].minorticks_on()
+    ax[0].grid(which='major', linestyle='-', linewidth=0.8)
+    ax[0].grid(which='minor', linestyle='--', linewidth=0.3)
     ax[1].plot(r * rho, p, 'k')
     ax[1].plot(r_v[vertex_index] * rho_v, p_v[:, vertex_index], '--', color=col)
     #ax[1].yaxis.set_major_formatter(mtick.FormatStrFormatter('%.2e'))
     ax[1].set_xlabel('Координата x, м')
     ax[1].set_ylabel('Давление p, Па')
+    ax[1].minorticks_on()
+    ax[1].grid(which='major', linestyle='-', linewidth=0.8)
+    ax[1].grid(which='minor', linestyle='--', linewidth=0.3)
     plt.show()
 
 
