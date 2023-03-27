@@ -273,7 +273,7 @@ def get_radial_solution(
     p = eps * e_p * 2**lam[-1] * omega[-1] / gamma[-1] * fcn_press_calc(delt[-1], lam[-1], rho)
     eta = eff[-1]
 
-    return r, w, p, rho, eta
+    return r, w, p, rho, eta, tau, phi
 
 
 def radial_vert_sol(
@@ -320,19 +320,72 @@ def radial_vert_sol(
     return r, w, p, rho, eta
 
 
-def main():
-    e_p = 10 * 1e9  # Па
+def plot_radial_parametric_space(
+        tau,
+        phi
+):
+    tau_min = -10
+    tau_max = 20
+    phi_min = -30
+    phi_max = 20
+
+    t_mk0 = 4.54e-2
+    t_mk1 = 2.59e6
+
+    t_mmt0 = 7.41e-6
+    t_mmt1 = 7.20e2
+
+    t_kkt0 = 5.96e-8
+    t_kkt1 = 4.81e2
+
+    t_mtkt0 = 4.18
+    t_mtkt1 = 2.01e11
+
+    tau_mt = (t_mmt1**(14/9) * t_mtkt0**2)**(9/32)
+    phi_mt = (tau_mt / t_mtkt0)**2
+    tau_kt = (t_kkt1**(6/5) * t_mtkt1**2)**(5/16)
+    phi_kt = (tau_kt / t_mtkt1)**2
+
+    plt.plot(np.log10(np.array([t_mk0, t_mk0, t_mmt0 / (10**phi_max)**(9/14)], dtype='float')),
+             np.log10(np.array([10**phi_min, (t_mk0 / t_mmt0)**(-14/9), 10**phi_max], dtype='float')), 'b-')
+    plt.plot(np.log10([t_mmt1 / (10**phi_max)**(9/14), tau_mt, t_mtkt0*10**(phi_max/2)], dtype='float'),
+             np.log10(np.array([10**phi_max, phi_mt, 10**phi_max], dtype='float')), 'g-')
+    plt.plot(np.log10(np.array([t_mk1, t_mk1, t_kkt0 / (10**phi_min)**(5/6)], dtype='float')),
+             np.log10([10**phi_min, (t_kkt0 / t_mk1)**(6/5), 10**phi_min]), 'r-')
+    plt.plot(np.log10(np.array([10**tau_max, tau_kt, 10**tau_max], dtype='float')),
+             np.log10([(t_kkt1 / 10**(tau_max))**(6/5), phi_kt, (10**tau_max / t_mtkt1)**2]), 'm-')
+    
+    if tau < 10**tau_min:
+        tau = 10**tau_min
+    if tau > 10**tau_max:
+        tau =  10**tau_max
+    if phi < 10**phi_min:
+        phi =  10**phi_min
+    if phi > 10**phi_max:
+        phi = 10**phi_max
+    plt.plot(np.log10(tau), np.log10(phi), 'ko')
+    plt.minorticks_on()
+    plt.grid(which='major', linestyle='-', linewidth=0.8)
+    plt.grid(which='minor', linestyle='--', linewidth=0.3)
+
+    plt.show()
+
+
+def main(plot_parametric_space=True):
+    e_p = 1e10  # Па
     mu_p = 0.1  # Па*с
-    k_p = 1 * 1e6  # Па*м^(1/2)
+    k_p = 1e6  # Па*м^(1/2)
     c_p = 1e-6  # м/с^(1/2)
     t = 1e3  # с
     q_0 = 0.001  # м^3/с
     h = 1  # м
     n = 1000
 
-    r, w, p, rho, eta = get_radial_solution(e_p, mu_p, k_p, c_p, q_0, t, n)
+    r, w, p, rho, eta, tau, phi = get_radial_solution(e_p, mu_p, k_p, c_p, q_0, t, n)
     r_v, w_v, p_v, rho_v, eta_v = radial_vert_sol(e_p, mu_p, k_p, c_p, q_0, t, n)
 
+    if plot_parametric_space:
+        plot_radial_parametric_space(tau, phi)
 
     vertex_index = 0
     col = 'b'

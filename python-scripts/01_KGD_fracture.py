@@ -257,7 +257,7 @@ def get_kgd_solution(
     p = eps * e_p * 2**lam[-1] * omega[-1] / gamma[-1] * fcn_press_calc(delt[-1], lam[-1], xi)
     eta = eff[-1]
 
-    return l, w, p, xi, eta
+    return l, w, p, xi, eta, tau, k_m
 
 
 def kgd_vert_sol(
@@ -304,19 +304,67 @@ def kgd_vert_sol(
     return l, w, p, xi, eta
 
 
-def main():
-    e_p = 10 * 1e9  # Па
+def plot_kgd_parametric_space(
+        tau,
+        k_m
+):
+    tau_min = -30
+    tau_max = 25
+    k_min = -2.5
+    k_max = 3
+    
+    t_mmt0 = 1.21e-13
+    t_mmt1 = 2.36e6
+
+    k_mk0 = 0.70
+    k_mk1 = 4.80
+
+    t_kkt0 = 1.25e-14
+    t_kkt1 = 1.76e5
+
+    km_tkt0 = 0.90
+    km_tkt1 = 4.80
+
+    plt.plot(np.log10(np.array([t_mmt0, t_mmt0, 10**tau_min], dtype='float')),
+             np.log10(np.array([10**k_min, k_mk0, k_mk0], dtype='float')), 'b-')
+    plt.plot(np.log10(np.array([t_mmt1, t_mmt1, 10**tau_max], dtype='float')),
+             np.log10(np.array([10**k_min, km_tkt0, km_tkt0], dtype='float')), 'g-')
+    plt.plot(np.log10(np.array([10**tau_min, t_kkt0*k_mk1**4, t_kkt0*1e2**4], dtype='float')),
+             np.log10(np.array([k_mk1, k_mk1, 10**k_max], dtype='float')), 'r-')
+    plt.plot(np.log10(np.array([10**tau_max, t_kkt1*km_tkt1**4, t_kkt1*1e2**4], dtype='float')),
+             np.log10(np.array([km_tkt1, km_tkt1, 10**k_max], dtype='float')), 'm-')
+    
+    if tau < 10**tau_min:
+        tau = 10**tau_min
+    if tau > 10**tau_max:
+        tau =  10**tau_max
+    if k_m < 10**k_min:
+        k_m =  10**k_min
+    if k_m > 10**k_max:
+        k_m =  10**k_max
+    plt.plot(np.log10(tau), np.log10(k_m), 'ko')
+    plt.minorticks_on()
+    plt.grid(which='major', linestyle='-', linewidth=0.8)
+    plt.grid(which='minor', linestyle='--', linewidth=0.3)
+    
+    plt.show()
+
+
+def main(plot_parametric_space=True):
+    e_p = 1e10  # Па
     mu_p = 0.1  # Па*с
-    k_p = 1 * 1e6  # Па*м^(1/2)
+    k_p = 1e6  # Па*м^(1/2)
     c_p = 1e-6  # м/с^(1/2)
     t = 1e3  # с
     q_0 = 0.001  # м^3/с
     h = 1  # м
     n = 1000
 
-    l, w, p, xi, eta = get_kgd_solution(e_p, mu_p, k_p, c_p, q_0/h, t, n)
+    l, w, p, xi, eta, tau, k_m = get_kgd_solution(e_p, mu_p, k_p, c_p, q_0/h, t, n)
     l_v, w_v, p_v, xi_v, eta_v = kgd_vert_sol(e_p, mu_p, k_p, c_p, q_0/h, t, n)
 
+    if plot_parametric_space:
+        plot_kgd_parametric_space(tau, k_m)
 
     vertex_index = 0
     col = 'b'
