@@ -1,0 +1,91 @@
+\documentclass[a4paper, 11pt]{article}
+\renewcommand{\baselinestretch}{1.1}
+\usepackage{comment}
+\usepackage{lipsum}
+\usepackage{fullpage}
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amssymb,amsthm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{verbatim}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage{indentfirst}
+\setlength{\parindent}{0cm}
+\usepackage{hyperref}
+
+\begin{document}
+\section{Общая структура работы.}
+
+Модель KGD: трещина с прямоугольным сечением; применима в случаях, когда высота трещины много больше её длины;
+\\
+
+Модель PKN: трещина с эллиптическим сечением; применима в случаях, когда полудлина трещины много больше её высоты;
+\\
+
+\section{Важные источники.}
+
+1) Ткаченко Д.Р. Анализ влияния режима работы нагнетательной скважины на рост трещны автоГРП.
+
+2) Hagoort J. Waterflood-induced hydraulic fracturing. PhD. Thesis, Delft Technical Univeёrsity, 1981.
+
+3) Hagoort J., Weatherill B.D. and Settari A. Modeling the propagation of waterflood-induced hydraulic fractures. (здесь показано, что в бесконечном пласте при любой скорости распространения трещины её длина будет пропорциональна квадратному корню времени, различия будут только в коэффициентах)
+
+4) Koning E.J.L. Fractured water-injection wells. Analytical modelling of fracture propagation.
+
+5) Кабанова П.К. Моделирование давления инициации трещины гидроразрыва пласта на нагнетательной скважине в пороупругой постановке
+
+6) T.K. Perkins, L.R. Kern. Widths of hydraulic fractures
+
+7) R.P. Nordgren. Propagation of vertical hydraulic fractures
+
+8) Тримонова М., Дубиня Н., Основные закономерности развития трещины автоГРП
+
+9) 
+\\
+
+\section{Дополнительные источники.}
+
+1) Economides. Unified Fracture Design. Bridging the gap between theory and practice.
+
+2) Логвинюк А.В. Комплексный анализ и моделирование разработки Приобского месторождения для оптимизации системы поддержания пластового давления
+
+3)
+\\
+
+
+\section{Общие заметки.}
+
+1) Если скорость давления, проходящего через пласт, имеет порядок скорости распространения трещины, распределение утечек будет двумерным в плоскости пласта. Т.е. одномерная модель утечек (модель Картера) не работает.
+
+2) Предположение о малости полудлины трещины по сравнению с толщиной пласта (модель KGD).
+
+3) Модель Картера перестаёт быть верной, когда скорость распространения трещины становится меньше скорости пластового давления.
+Возможные режимы утечек: линейный 1D режим (Картер), эллиптический 2D режим (Грингартен), радиальный режим.
+
+4) Повлиять на состояние напряжения в пласте может изменение температуры и давления в нём.
+Когда пласт охлаждается, то порода начинает сжиматься и, следовательно, происходит термоупругое уменьшение горизонтальных напряжений пласта.
+Поэтому опасно закачивать холодную воду в пласт (неконтроллируемый рост трещин автоГРП).
+Изменения горизонтального напряжения в пласте зависит от соотношения высоты трещины и глубины проникновения давления / фронта температур.
+
+5)
+\\
+
+\section{Вопросы.}
+
+1) Важно ли предположение о малости полудлины трещины (по сравнению с высотой пласта) для возможности рассмотрения плоско-деформированной задачи?
+
+2)
+
+3)
+
+
+\end{document}
