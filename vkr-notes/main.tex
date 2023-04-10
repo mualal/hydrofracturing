@@ -126,7 +126,7 @@
 \newpage
 \section{Перевод статьи Нордгрена (Распространение вертикальной трещины гидроразрыва пласта)}
 
-\subsection{Рефереат}
+\subsection{Реферат}
 В данной статье рассматривается распространение трещин гидроразрыва с ограниченной высотой и эллиптическим вертикальным сечением с учётом эффекта утечек жидкости.
 Представлены численные и асимптотические приближённые решения в безразмерной форме, которые дают длину и ширину трещины в любой момент времени и при любом наборе физических параметров.
 Ознакомление с безразмерными результатами и приближёнными решениями должно быть полезно при разработке дизайна ГРП.
@@ -424,7 +424,7 @@ $A$ -- площадь поперечного сечения трещины\\
 $C$ -- коэффициент утечек жидкости в пласт\\
 $G$ -- объёмный модуль сдвига пласта\\
 $h$ -- толщина пласта\\
-$K$ -- \\
+$K$ -- константа (определяемая выражением \eqref{C-3})\\
 $L$ -- длина трещины\\
 $L_d$ -- безразмерная $L$\\
 $p_f$ -- пластовое поровое давление\\
@@ -439,7 +439,7 @@ $v$ -- скорость жидкости\\
 $W$ -- ширина трещины в центре трещины ($w_{max}$)\\
 $W_d$ -- безразмерная $W$\\
 $w$ -- ширина трещины\\
-$x,y,z$ -- координаты в прямоугольной декартовой системе координат\\
+$x,y,z$ -- координаты в прямоугольной декартовой системе координат (рис. \ref{fig:kgd-model-geometry})\\
 $x_d$ -- безразмерная координата $x$\\
 $\Delta p$ -- давление в трещине минус $S$\\
 $\mu$ -- вязкость жидкости гидроразрыва\\
@@ -448,12 +448,107 @@ $\tau(x)$ -- время начала утечек жидкости на расс
 \setlength{\parindent}{20pt}
 
 \subsection{Список цитированной литературы}
+\setlength{\parindent}{0pt}
+[1] Howard, G.C. and Fast, C.R.: Hydraulic Fracturing, Monograph Series, Society of Petroleum Engineers, Dallas (1970) Vol. II.
+
+[2] Carter, R.D.: "<Derivation of the General Equation for Estimating the Extent of the Fractured Area"> Appendix to: "<Optimum Fluid Characteristics for Fracture Extension"> by G. C. Howard and C. R. Fast, Drill. and Prod. Prac., API (1957) 261-270.
+
+[3] Khristianovic, S.A. and Zheltov, Y.P.: "<Formation of Vertical Fractures by Means of Highly Viscous Liquid"> Proc., Fourth World Pet. Cong., Rome (1955) Sec. 2, 579-586.
+
+[4] Baron, G. et al.: "<Fracturation hydraulique; bases the oriques, estudes de laboratorie, essais sur champ"> Proc., Seventh World Pet. Cong., Mexico City (1967) Sec. 3, 371.
+
+[5] Geertsma, J. and de Klerk, F.: "<A Rapid Method of Predicting Width and Extent of Hydraulically Induced Fractures">, J. Pet. Tech. (Dec., 1969) 1571-1681.
+
+[6] Perkins, T.K. and Kern, L.R.: "<Widths of Hydraulic Fractures">, J. Pet. Tech. (Sep., 1961) 937-949.
+
+[7] Kern, L.R., Perkins, T.K and Wyant, R.E.: "<Designing Aluminum-Pellet Fracturing Treatments">, Drill. and Prod. Prac., API (1961).
+
+[8] England, A.H. and Green, A.E.: "<Some Two-Dimensional Punch and Crack Problems in Classical Elasticity"> Proc., Cambridge Phil. Soc. (1963) Vol. 5, 489.
+
+[9] Geertsma, J.: "<Problems of Rock Mechanics in Petroleum Engineering"> Proc., First Congress International Society of Rock Mechanics, Lisbon (1966) 585-594.
+
+[10] Lamb, H.: Hydrodynamics, 6th Ed., Dover Publications, Inc., New York (1932).
+
+[11] Hall C.D., Jr. and Dollarhide, F.E.: "<Performance of Fracturing Fluid Loss Agents Under Dynamic Conditions">, J. Pet. Tech. (July, 1968) 763-769.
+
+[12] Ames, W.F.: Nonlinear Partial Differential Equations in Engineering, Academic Press, Inc., New York (1965).
+
+\setlength{\parindent}{20pt}
 
 \subsection{Приложение A. Численное решение}
+
+Здесь мы получим конечно-разностный аналог уравнений \eqref{Initial_cond}-\eqref{GU_2} и дадим численный метод решения.
+Чтобы получить конечно-разностные уравнения, удовлетворяющие общему условию баланса жидкости, начнём вывод с уравнения неразрывности \eqref{Continuity} вместе с выражениями \eqref{leak-offs}, \eqref{leak-off} и \eqref{gu1}, т.е.
+
+\beq\label{A-1}
+\frac{\partial q}{\partial x}+\frac{2hC}{\sqrt{t-\tau(x)}}+\frac{\partial A}{\partial t}=0,\,\,\,\,\,\,\,\,\,\,0<x<L
+\tag{A-1}
+\eeq
+
+\beq\label{A-2}
+q(0,t)=q_i
+\tag{A-2}
+\eeq
+
+Интегрирование уравнения \eqref{A-1} по времени от $t_m$ до $t_{m+1}$ с использованием формулы трапеций даёт:
+\beq\label{A-3}
+\frac{\Delta t_m}{2}\frac{\partial}{\partial x}\left(q^{m+1}+q^m\right)+\left[4hC\sqrt{t-\tau(x)}+A\right]_{t_m}^{t_{m+1}}=0
+\tag{A-3}
+\eeq
+где
+$$
+\Delta t_m=t_{m+1}-t_m\,\,\,\,\,,\,\,\,\,\,q^m=q(x,t_m).
+$$
+
+Интегрирование уравнения \eqref{A-3} по $x$ от $x_{i-1/2}$ до $x_{i+1/2}$ с использованием уравнения \eqref{A_area} и центрального значения для интеграла даёт:
+\beq\label{A-4}
+\frac{\Delta t_m}{2\Delta x}\left(q_{i+\frac{1}{2}}^{m+1}-q_{i-\frac{1}{2}}^{m+1}+q_{i+\frac{1}{2}}^{m}-q_{i-\frac{1}{2}}^{m}\right)+4hC\left(\sqrt{t_{m+1}-\tau_i}-\sqrt{t_m-\tau_{i}}\right)+\frac{\pi h}{4}\left(W_i^{m+1}-W_i^m\right)=0
+\tag{A-4}
+\eeq
+где
+$$
+\Delta x=x_{i+\frac{1}{2}}-x_{i-\frac{1}{2}}\,\,\,,\,\,\,W_i^m=W(x_i,t_m)\,\,\,,\,\,\,x_i=\frac{1}{2}\left(x_{i+\frac{1}{2}}+x_{i-\frac{1}{2}}\right).
+$$
+
+Если мы примем $x_{\frac{1}{2}}=0$, то из уравнения \eqref{A-2}:
+\beq\label{A-5}
+q_{\frac{1}{2}}^m=q_i
+\tag{A-5}
+\eeq
+и из уравнения \eqref{Continuity}:
+\beq\label{A-6}
+W_i^0=0
+\tag{A-6}
+\eeq
+
+Конечно-разностный аналог уравнения \eqref{q_vs_w}:
+\beq\label{A-7}
+q_{i+\frac{1}{2}}=-\frac{\pi G}{256(1-\nu)\mu\Delta x}\left[\left(W_{i+1}^m\right)^4-\left(W_i^m\right)^4\right]
+\tag{A-7}
+\eeq
+
+Результатом подстановки уравнения \eqref{A-7} в уравнение \eqref{A-4} является нелинейная система уравнений с неизвестным $W_i^{m+1}$ и с считаемым известным $W_i^m$.
+Чтобы решить эту систему запишем:
+\beq\label{A-8}
+W_i^{m+1}=W_i^m+\Delta W_i^m
+\tag{A-8}
+\eeq
+и примем, что
+\beq\label{A-9}
+\left(W_i^{m+1}\right)^4\approx\left(W_i^m\right)^4+4\left(W_i^m\right)^3\Delta W_i^m
+\eeq
+
+При подстановке уравнений \eqref{A-6}, \eqref{A-8} и \eqref{A-9} в уравнение \eqref{A-4} мы получим алгебраическую линейную трёхдиагональную систему уравнений, которая может быть просто решена для $\Delta W_i^m$ при $m=1,2,...$. 
 
 \subsection{Приложение B. Решение при доминировании утечек жидкости}
 
 \subsection{Приложение C. Решение при отсутствии утечек жидкости в пласт}
+
+где
+\beq\label{C-3}
+K=\frac{G}{64(1-\nu)\mu h}
+\tag{C-3}
+\eeq
 
 \subsection{Приложение D. Приближения Перкинса и Керна}
 
