@@ -290,7 +290,7 @@ W(x,t)=0,\,\,\,\,\,x\geqslant L(t),
 \frac{G}{64(1-\nu)\mu h}\frac{\partial^2}{\partial x^2}\left(W^4\right)=\frac{8C}{\pi\sqrt{t-\tau(x)}}+\frac{\partial W}{\partial t},\,\,\,\,\,\,\,0\leqslant x\leqslant L,\,\,\,\,\,\,\,t>0,
 \eeq
 где $\tau(x)$ -- время, когда трещина открылась в точке с координатой $x$, т.е.
-\beq
+\beq\label{15}
 \tau[L(t')]=t',\,\,\,\,\,\,\,\,0\leqslant t'\leqslant t
 \eeq
 Другими словами, $\tau(x)$ -- это функция, обратная к $L(t)$.
@@ -536,31 +536,232 @@ W_i^{m+1}=W_i^m+\Delta W_i^m
 и примем, что
 \beq\label{A-9}
 \left(W_i^{m+1}\right)^4\approx\left(W_i^m\right)^4+4\left(W_i^m\right)^3\Delta W_i^m
+\tag{A-9}
 \eeq
 
 При подстановке уравнений \eqref{A-6}, \eqref{A-8} и \eqref{A-9} в уравнение \eqref{A-4} мы получим алгебраическую линейную трёхдиагональную систему уравнений, которая может быть просто решена для $\Delta W_i^m$ при $m=1,2,...$. 
 
 \subsection{Приложение B. Решение при доминировании утечек жидкости}
 
+Здесь мы предполагаем, что слагаемое $\partial A/\partial t$ в уравнении \eqref{Continuity} пренебрежимо мало по сравнению со скоростью утечек $q_l$.
+Тогда с использованием выражений \eqref{leak-offs} и \eqref{leak-off} уравнение неразрывности \eqref{Continuity} перепишется в следующем виде:
+\beq\label{B-1}
+\frac{\partial q}{\partial x}=-\frac{2hC}{\sqrt{t-\tau(x)}}
+\tag{B-1}
+\eeq
+где $\tau$ зависит от $x$ так, чтобы выполнялось равенство
+\beq\label{B-2}
+\tau\left[L(t')\right]=t'\,\,\,,\,\,\,0\leqslant t'\leqslant t
+\tag{B-2}
+\eeq
+
+Интегрирование уравнения \eqref{B-1} с использованием граничного условия \eqref{gu1} даёт
+\beq\label{B-3}
+q=q_i-2hC\int\limits_{0}^{x}{\frac{dx}{\sqrt{t-\tau(x)}}}
+\tag{B-3}
+\eeq
+
+Так как из кончика трещины нет потока $\left[q(L,t)=0\right]$, из уравнения \eqref{B-3} получаем
+\beq\label{B-4}
+\int\limits_{0}^{L}{\frac{dx}{\sqrt{t-\tau(x)}}}=\frac{q_i}{2hC}
+\tag{B-4}
+\eeq
+
+Решение уравнения \eqref{B-4} с использованием уравнения \eqref{B-2} даёт
+\beq\label{B-5}
+\tau=\left(\frac{\pi hCx}{q_i}\right)^2\,\,\,,\,\,\,L=\frac{q_it^{\frac{1}{2}}}{\pi Ch},
+\tag{B-5}
+\eeq
+которое было ранее получено в [2, 5, 9] несколько иным образом.
+
+С использованием уравнения \eqref{B-5}, уравнение \eqref{B-3} перепишется в следующем виде:
+\beq\label{B-6}
+q=q_i\left[1-\frac{2}{\pi}\sin^{-1}{\zeta}\right]\,\,\,,\,\,\,\zeta=\frac{x}{L}
+\tag{B-6}
+\eeq
+
+Из уравнений \eqref{q_vs_w}, \eqref{B-6} и условия $W(L,t)=0$ получаем
+\beq\label{B-7}
+W=4\left[\frac{2(1-\nu)\mu q_i^2}{\pi^3 CGh}\right]^{\frac{1}{4}}t^{\frac{1}{8}}\phi(\zeta),
+\tag{B-7}
+\eeq
+где
+\beq\label{B-8}
+\phi(\zeta)=\left[\frac{W(x,t)}{W(0,t)}\right]_{x=L\zeta}=\left[\zeta\sin^{-1}{\zeta}+(1-\zeta^2)^{\frac{1}{2}}-\frac{\pi}{2}\zeta\right]^{\frac{1}{4}}
+\tag{B-8}
+\eeq
+
+Функция $\phi(\zeta)$ представлена на рис. \ref{fig:width-vs-distance-from-well}.
+Из выражений \eqref{Max_W}, \eqref{B-5} и \eqref{B-7} максимальное раскрытие трещины и давление в центре трещины имеют вид:
+\beq\label{B-9}
+W(0,t)=4\left[\frac{2(1-\nu)\mu q_i^2}{\pi^3 GCh}\right]^{\frac{1}{4}}t^{\frac{1}{8}}\,\,\,\,\,\,\,\,;\,\,\,\,\,\,\,\,\Delta p(0,t)=4\left[\frac{2G^3\mu q_i^2}{\pi^3(1-\nu)^3 Ch^5}\right]^{\frac{1}{4}}t^{\frac{1}{8}}
+\tag{B-9}
+\eeq
+
+Имея решение, мы можем проверить слагаемое $\partial A/\partial t$, которым мы пренебрегли при выводе.
+Из выражений \eqref{A_area}, \eqref{leak-offs}, \eqref{leak-off} и \eqref{B-9}:
+\beq\label{B-10}
+\left[\frac{\partial A}{\partial t}/q_l\right]_{x=0}=\frac{1}{16}\left[\frac{2\pi(1-\nu)\mu q_i^2}{GC^5h}\right]^{\frac{1}{4}}t^{-\frac{3}{8}}
+\tag{B-10}
+\eeq
+
+Таким образом, $\partial A/\partial t$ пренебрежимо мало по сравнению с $q_l$ при $x=0$ (и вероятно на большей части трещины) на достаточно больших временах $t$.
+
+Выражение той же формы, что и \eqref{B-10} может быть получено для
+$$
+\int\limits_{0}^{L}{\frac{\partial A}{\partial t}dx/q_i}.
+$$
+
 \subsection{Приложение C. Решение при отсутствии утечек жидкости в пласт}
 
+В этом разделе мы рассмотрим случай отсутствия утечек жидкости из трещины в пласт, т.е.
+\beq\label{C-1}
+q_l=0
+\tag{C-1}
+\eeq
+
+Подстановка \eqref{q_vs_w}, \eqref{A_area} и \eqref{C-1} в уравнение неразрывности \eqref{Continuity} даёт
+\beq\label{C-2}
+K\frac{\partial^2}{\partial x^2}\left(W^4\right)=\frac{\partial W}{\partial t},
+\tag{C-2}
+\eeq
 где
 \beq\label{C-3}
 K=\frac{G}{64(1-\nu)\mu h}
 \tag{C-3}
 \eeq
 
+С учётом уравнения \eqref{q_vs_w} граничное условие \eqref{gu1} перепишется в следующем виде:
+\beq\label{C-4}
+-\left[\frac{\partial}{\partial x}\left(W^4\right)\right]_{x=0}=\frac{4q_i}{\pi Kh}
+\tag{C-4}
+\eeq
+
+Нелинейное дифференциальное уравнение в частных производных \eqref{C-2} вместе с граничными условиями \eqref{GU_1}, \eqref{C-4} и начальным условием \eqref{Initial_cond} может быть решено численным методом, представленным в приложении A.
+
+Чтобы свести к минимуму количество вычислений и дать представление о влиянии различных параметров, будет получено автомодельное решение (решения такого вида обсуждаются Ames-ом в работе [12]).
+Ищем решение вида
+\beq\label{C-5}
+W=\alpha\,\psi(\xi)\,t^m\,\,\,\,\,,\,\,\,\,\,\xi=\beta xt^n,
+\tag{C-5}
+\eeq
+где константы $\alpha$, $\beta$, $m$, $n$ и функцию $\psi(\xi)$ нужно найти.
+Подстановка выражения \eqref{C-5} в \eqref{C-2}, \eqref{C-4}, \eqref{Initial_cond} и \eqref{GU_1} приводит к уравнениям:
+\beq\label{C-6}
+\begin{split}
+\frac{d^2}{d\xi^2}\left(\psi^4\right)=\frac{1}{5}\left(\psi-4\xi\frac{d\psi}{d\xi}\right),\,\,\xi>0;\\[4pt]
+-\left[\frac{d}{d\xi}\left(\psi^4\right)\right]_{\xi=0}=\frac{2}{\pi};\,\,\,\,\,\,\,\,\,\,\lim_{\xi\to\infty}{\psi(\xi)}=0
+\end{split}
+\tag{C-6}
+\eeq
+с
+\beq\label{C-7}
+\begin{split}
+\alpha=\left(\frac{4q_i^2}{h^2K}\right)^{\!\!\frac{1}{5}};\,\,\,\,\,\,\,\,\,\,\beta\left(\frac{h^3}{8Kq_i^3}\right)^{\!\!\frac{1}{5}};\,\,\,\,\,\,\,\,\,\,m=\frac{1}{5};\,\,\,\,\,\,\,\,\,\,n=-\frac{4}{5}.
+\end{split}
+\tag{C-7}
+\eeq
+Функция $\psi(\xi)$ может быть получена численно из системы уравнений \eqref{C-6}.
+Альтернативно, исходная задача \eqref{C-2}, \eqref{C-4}, \eqref{Initial_cond} и \eqref{GU_1} может быть решена численно относительно $W$ и затем $\psi(\xi)$ может быть получена из \eqref{C-5} и \eqref{C-7}.
+Используя последний подход, с помощью метода приложения A находим $\psi(\xi)$ и
+\beq\label{C-8}
+\begin{split}
+\psi(\xi^*)=0\text{ при }\xi^*=1.01\\
+\psi(0)=0.83\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,
+\end{split}
+\tag{C-8}
+\eeq
+
+Таким образом, из уравнений \eqref{C-3}, \eqref{C-5} и \eqref{C-7} длина трещины
+\beq\label{C-9}
+L=0.68\left[\frac{Gq_i^3}{(1-\nu)\mu h^4}\right]^{\frac{1}{5}}t^{\frac{4}{5}}
+\tag{C-9}
+\eeq
+с
+$$
+\frac{x}{L}=\frac{\xi}{\xi^*}
+$$
+
+Функция $\psi(\beta xt^{-4/5})/\psi(0)=W(x,t)/W(0,t)$ изображена на рис. \ref{fig:width-vs-distance-from-well}.
+Из \eqref{Max_W}, \eqref{C-3}, \eqref{C-5} и \eqref{C-7} максимальное раскрытие и давление в центре трещины:
+\beq\label{C-10}
+W(0,t)=2.5\left[\frac{(1-\nu)\mu q_i^2}{Gh}\right]^{\!\frac{1}{5}}t^{\frac{1}{5}}\,\,\,\,\,\,\,;\,\,\,\,\,\,\,\Delta p(0,t)=2.5\left[\frac{G^4\mu q_i^2}{(1-\nu)^4h^6}\right]^{\frac{1}{5}}t^{\frac{1}{5}}
+\tag{C-10}
+\eeq
+
+Из \eqref{C-10} имеем:
+\beq\label{C-11}
+\frac{\partial W}{\partial t}\sim t^{-\frac{4}{5}}
+\tag{C-11}
+\eeq
+
+Таким образом, при $t\to0$ слагаемое $\partial W/\partial t$ доминирует над слагаемым $8C$ в \eqref{Main_eq} за исключением области рядом с $x=L$.
+Следовательно, полученное решение с $C=0$ будет хорошим приближением к решению при $C\neq 0$ на достаточно малых временах.
+
 \subsection{Приложение D. Приближения Перкинса и Керна}
 
 Для простоты сравнения мы записываем здесь приближенное решение Перкинса и Керна [6].
-
-\beq
-w=4\left[\frac{(1-\nu)\mu q_1L}{\pi G}\left(1-\frac{x}{L}\right)\right]^{1/4}
+При пренебрежении утечками и скоростью изменения объёма трещины в уравнении неразрывности \eqref{Continuity} правая часть уравнения \eqref{Main_eq} равна нулю и интегрирование с использованием \eqref{15} и \eqref{GU_2} даёт
+\beq\label{D-1}
+W=4\left[\frac{(1-\nu)\mu q_1L}{\pi G}\left(1-\frac{x}{L}\right)\right]^{1/4}
+\tag{D-1}
 \eeq
 
+В этом выражении неизвестна длина $L$.
+Более того, скорость потока $q(x)$ равна $q_i$ везде, включая $x=L$, что неправдоподобно.
+Для сравнения, наше решение на больших временах при исключении $C$ из \eqref{B-5}-\eqref{B-7} (путём подстановки одного в другое) даёт
+\beq\label{D-2}
+W=4\left[\frac{2(1-\nu)\mu q_iL}{\pi^2G}\right]^{1/4}\phi\left(\frac{x}{L}\right),
+\tag{D-2}
+\eeq
+где $\phi(\zeta)$ определяется выражением \eqref{B-8}.
+Таким образом, \eqref{D-1} отличается от \eqref{D-2} при $x=0$ на множитель $0.89$.
 
-\subsection{Приложение E. Влияние ступенчатых потерь на длину трещины}
+На малых временах приближённое решение для $L$ может быть получено из общего уравнения неразрывности, полученного путём интегрирования \eqref{Main_eq} с $C=0$ и $\partial W/\partial t$ из \eqref{D-1}.
+Таким образом, мы получаем \eqref{C-9} с заменой числового коэффициента на $0.60$.
 
+Кроме того, поправка к \eqref{D-1} может быть получена из \eqref{Main_eq} с $\partial W/\partial t$, рассчитанном по \eqref{D-1}.
 
+При $x=0$ скорректированное значение $W$ отличается от \eqref{D-1} в $0.94$ раза.
+
+Таким образом, результат Перкинса и Керна \eqref{D-1} для ширины трещины в терминах её длины является хорошим приближением на ранних временах.
+Однако длина должна быть определена из \eqref{C-9}, а не по формуле Картера [2].
+
+\subsection{Приложение E. Влияние ступенчатых утечек на длину трещины}
+
+Заменим выражение \eqref{leak-off} выражением
+\beq\label{E-1}
+q_l=\frac{C}{\sqrt{t-\tau}}+V_s\delta(t-\tau),
+\tag{E-1}
+\eeq
+где $V_s$ -- внезапная утечка (объём/площадь), происходящая мгновенно в момент времени $t=\tau$ и $\delta(t-\tau)$ -- дельта-функция Дирака.
+Мы следуем методу приложения B и получаем вместо \eqref{B-4}:
+\beq\label{E-2}
+C\int\limits_{0}^{t}{\frac{dL}{d\tau}}\frac{d\tau}{\sqrt{t-\tau}}+V_s\frac{dL}{dt}=\frac{q_i}{2h}.
+\tag{E-2}
+\eeq
+
+Уравнение \eqref{E-2} может быть решено с помощью преобразования Лапласа.
+Результат:
+\beq\label{E-3}
+L=\frac{q_i}{\pi Ch}\left[t^{\frac{1}{2}}+\frac{V_s}{2C}\left(L^{b^2t}\,\textrm{erfc}\!\left(b\sqrt{t}\right)-1\right)\right],
+\tag{E-3}
+\eeq
+где
+$$
+b=\frac{\pi^{\frac{1}{2}}C}{V_s}.
+$$
+
+Так как
+\beq\label{E-4}
+e^{b^2t}\textrm{erfc}\!\left(b\sqrt{t}\right)=\frac{1}{\pi^{\frac{1}{2}}b}\left(1-\frac{1}{2b^2t}+...\right)t^{-\frac{1}{2}}
+\tag{E-4}
+\eeq
+слагаемое с $V_s$ в \eqref{E-3} пренебрежимо мало при
+\beq\label{E-5}
+t\gg(V_s/C)^2,
+\tag{E-5}
+\eeq
+что является небольшим временем для многих жидкостей гидроразрыва.
 
 \end{document}
