@@ -38,7 +38,7 @@
 	Planar3D&Одна трещина, распространяющаяся в плоскости вдоль направления максимальных горизонтальных напряжений; среда однородна по $E$ и $\nu$; законы упругости рассматриваются в рамках линейно-упругой механики разрушения; ньютоновская жидкость с вязкостью $\mu$, отсутствует fluid lag&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/planar3D_scheme_better.jpg}}\\ \hline
 	Pseudo3D&Одномерное течение жидкости&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/pseudo3D_scheme_better.jpg}}\\ \hline
 	Перкинса- Керна- Нордгрена (PKN)&Эллиптическое вертикальное сечение; плоская деформация в вертикальной плоскости&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/pkn_scheme_better.jpg}}\\ \hline
-	Радиальная&Проверить&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/radial_scheme_better.jpg}}\\ \hline
+	Радиальная&Точечный перфорационный интервал&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/radial_scheme_better.jpg}}\\ \hline
 	Христиановича- Желтова- Гиртсма- деКлерка (KGD)&Прямоугольное вертикальное сечение; плоская деформация в горизонтальной плоскости&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/kgd_scheme_better.jpg}}\\ \hline
 	
 \end{longtable}
@@ -86,7 +86,6 @@
 \beq
 w(t+dt)dx = w(t)dx+q_x(x)dt-q_x(x+dx)dt-2gdxdt
 \eeq
-
 Откуда получаем уравнение баланса жидкости:
 \beq
 \frac{\partial w}{\partial t}+\frac{\partial q_x}{\partial x}+2g=Q_0(t)\delta(x)
@@ -107,43 +106,35 @@ g=\frac{C_l}{\sqrt{t-t_0(x)}}
 \beq
 v=v_x(y)
 \eeq
-
 Из уравнения Навье-Стокса:
 \beq
 \frac{\partial p}{\partial x}=\frac{\partial\tau}{\partial y}
 \eeq
-
 Для ньютоновской жидкости:
 \beq
 \tau = \mu\frac{\partial v}{\partial y}
 \eeq
-
 Дополнительно ставим условие неприлипания на границе:
 \beq
 v|_{y=\pm w/2}=0
 \eeq
-
 Общее решение:
 \beq
 v=\frac{\partial p}{\partial x}\frac{y^2}{2}+Ay+B
 \eeq
-
 Решение после учёта граничных условий:
 \beq
 v=-\frac{\partial p}{\partial x}\frac{w^2-4y^2}{8\mu}
 \eeq
-
 Суммарный поток (расход):
 \beq
 q=\int\limits_{-w/2}^{w/2}v(y)dy=-\frac{w^3}{12\mu}\frac{\partial p}{\partial x}
 \eeq
-
 Уравнение упругости для трещины KGD запишется в следующей форме:
 \beq
 p(x,t)=\sigma_0-\frac{E'}{4\pi}\int\limits_{-l}^{l}{\frac{w(s)ds}{(x-s)^2}},
 \eeq
-где $E'=\dfrac{E}{1-\nu^2}$.
-
+где $E'=\dfrac{E}{1-\nu^2}$.\newline\ \newline
 Условие распространения трещины KGD можно представить в виде:
 \beq
 \lim_{x\to l}\frac{w}{(l-x)^{1/2}}=
@@ -163,6 +154,10 @@ p(x,t)=\sigma_0-\dfrac{E'}{4\pi}\displaystyle\int\limits_{-l}^{l}\dfrac{w(s)ds}{
 \end{cases}
 \eeq
 где $C'=2C_l$, $\,\,\,\mu'=12\mu$, $\,\,\,E'=\dfrac{E}{1-\nu^2}$, $\,\,\,K'=\dfrac{8K_{Ic}}{\sqrt{2\pi}}$.
+\\
+
+Приближённые решения для модели Христиановича-Желтова-Гиртсма-
+деКлерка представлены в работе \cite{dontsov1_book}.
 
 \section{Модель радиальной трещины ГРП}
 
@@ -183,7 +178,10 @@ p_n(r,t)=-\dfrac{E'}{2\pi R}\displaystyle\int\limits_{0}^{R}M\left(\dfrac{r}{R},
 \end{cases}
 \eeq
 где $C'=2C_l$, $\,\,\,\mu'=12\mu$, $\,\,\,E'=\dfrac{E}{1-\nu^2}$, $\,\,\,K'=\dfrac{8K_{Ic}}{\sqrt{2\pi}}$.
+\\
 
+Приближённые решения для модели радиальной трещины представлены в работе \cite{dontsov2_book}.
+Рассмотрены несколько случаев, а именно случай доминирования вязкости с доминированием утечек, случай доминирования вязкости с отсутствием утечек, случай доминирования трещиностойкости с доминированием утечек и случай доминирования трещиностойкости с отсутствием утечек.
 
 \section{Модель Перкинса-Керна-Нордгрена}
 
@@ -218,6 +216,12 @@ p(x)=-\dfrac{2E'}{\pi^2H}\displaystyle\int\limits_{-l(t)}^{l(t)}\bar{w}(x')\dfra
 \end{cases}
 \eeq
 где $C'=2C_l$, $\,\,\,\mu'=12\mu$, $\,\,\,E'=\dfrac{E}{1-\nu^2}$, $\,\,\,K'=\dfrac{8K_{Ic}}{\sqrt{2\pi}}$.
+\\
+
+Приближённые решения для модели трещины PKN представлены в работе \cite{dontsov2021analysis}.
+Рассмотрены несколько случаев, а именно случай доминирования вязкости с доминированием утечек, случай доминирования вязкости с отсутствием утечек, случай доминирования трещиностойкости с доминированием утечек и случай доминирования трещиностойкости с отсутствием утечек.
+
+В работах \cite{koning_book, nordgren_book, perkins_kern_book} показано, что наиболее точно рост трещин автоГРП описывает модель PKN в случае доминирования трещиностойкости и больших утечек жидкости в пласт.
 
 %\beq
 %\frac{\partial\sigma_{xx}}{\partial x}+\frac{\partial\sigma_{xy}}{\partial y}=0
