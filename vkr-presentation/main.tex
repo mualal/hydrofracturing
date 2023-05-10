@@ -17,6 +17,8 @@
 \setsansfont{Times New Roman}
 \setmonofont{Consolas}
 
+\usepackage{tcolorbox}
+\usepackage{amsmath}
 \usepackage{tikz}
 \usepackage{blkarray}
 \usepackage{listings}
@@ -54,37 +56,259 @@
 
 
 \begin{frame}
+\frametitle{Цель и задачи работы}
+
+\textbf{Цель:}
+\begin{itemize}
+	\item построить модель совместного роста нескольких трещин автоГРП с учётом перераспределения потоков между ними
+\end{itemize}
+
+\textbf{Задачи:}
+\begin{itemize}
+	\item провести обзор имеющихся моделей роста трещины гидроразрыва пласта и выбрать наиболее подходящую модель для роста трещины автоГРП
+	\item построить физико-математическую модель роста нескольких трещин автоГРП
+	\item реализовать численный алгоритм решения на Python
+	\item построить графики зависимостей полудлины каждой из трещин автоГРП и расходов на каждой из трещин от времени
+	\item построить график зависимости забойного давления от времени
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Основные компоненты любой модели трещины ГРП}
+
+\begin{enumerate}[1)]
+	\item закон сохранения жидкости (доминирование или отсутствие утечек);
+	\item уравнение течения жидкости в трещине (в зависимости от реологии жидкости);
+	\item уравнение упругости для горной породы;
+	\item условие распространения трещины;
+	\item транспорт проппанта
+\end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Модель Христиановича-Желтова-Гиртсма-деКлерка (модель плоской трещины)}
+
+\begin{textblock*}{7cm}(0.5cm,1.7cm)
+$$
+\begin{cases}
+\dfrac{\partial w}{\partial t}+\dfrac{\partial q}{\partial x}+\dfrac{C'}{\sqrt{t-t_0(x)}}=Q_0(t)\delta(x),\\[15pt]
+q=-\dfrac{w^3}{\mu'}\dfrac{\partial p}{\partial x},\\[5pt]
+p(x,t)=\sigma_0-\dfrac{E'}{4\pi}\displaystyle\int\limits_{-l}^{l}\dfrac{w(s)ds}{(x-s)^2},\\[20pt]
+\displaystyle\lim_{x\to l}\dfrac{w}{(l-x)^{1/2}}=\dfrac{K'}{E'},
+\end{cases}
+$$
+где $C'=2C_l$; $\,\,\,\mu'=12\mu$; $\,\,\,E'=\dfrac{E}{1-\nu^2}$; $\,\,\,K'=\dfrac{8K_{Ic}}{\sqrt{2\pi}}$.
+\end{textblock*}
+
+\begin{textblock*}{7cm}(7.5cm,1.7cm)
+\includegraphics[width=5cm]{kgd_model_3D.jpg}
+\end{textblock*}
+
+\begin{textblock*}{7cm}(7.5cm,6.3cm)
+\includegraphics[width=5cm]{kgd_model_A-A_plane.jpg}
+\end{textblock*}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Модель радиальной трещины}
+
+\begin{textblock*}{7cm}(0.5cm,1.2cm)
+$$
+\begin{cases}
+\dfrac{\partial w}{\partial t}+\dfrac{1}{r}\dfrac{\partial}{\partial r}\left(rq\right)+\dfrac{C'}{\sqrt{t-t_0(r)}}=Q_0\delta(r),\\[15pt]
+q=-\dfrac{w^3}{\mu'}\dfrac{\partial p_n}{\partial r},\\[5pt]
+p_n(r,t)=-\dfrac{E'}{2\pi R}\displaystyle\int\limits_{0}^{R}M\left(\dfrac{r}{R},\dfrac{r'}{R}\right)\dfrac{\partial w(r',t)}{\partial r'}dr',\\[20pt]
+\displaystyle\lim_{r\to R}\dfrac{w}{(R-r)^{1/2}}=\dfrac{K'}{E'},
+\end{cases}
+$$
+где $C'=2C_l$; $\,\,\,\mu'=12\mu$; $\,\,\,E'=\dfrac{E}{1-\nu^2}$; $\,\,\,K'=\dfrac{8K_{Ic}}{\sqrt{2\pi}}$.
+\end{textblock*}
+
+\begin{textblock*}{7cm}(8.3cm,1.7cm)
+\includegraphics[width=4.3cm]{radial_model_3D.jpg}
+\end{textblock*}
+
+\begin{textblock*}{7cm}(7.5cm,6cm)
+\includegraphics[width=5cm]{radial_model_A-A_plane.jpg}
+\end{textblock*}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Модель Перкинса-Керна-Нордгрена (модель PKN)}
+
+\begin{textblock*}{7cm}(0.5cm,1.2cm)
+$$
+\begin{cases}
+\dfrac{\partial\bar{w}}{\partial t}+\dfrac{\partial\bar{q}_x}{\partial x}+\dfrac{C'}{\sqrt{t-t_0(x)}}=\dfrac{Q_0}{H}\delta(x),\\[15pt]
+\bar{q}_x=-\dfrac{\bar{w}^3}{\pi^2\mu}\dfrac{\partial p}{\partial x},\\[15pt]
+p(x)=-\dfrac{2E'}{\pi^2H}\displaystyle\int\limits_{-l(t)}^{l(t)}\bar{w}(x')\dfrac{dG(2(x'-x)/H)}{dx'}dx',\\[22pt]
+\displaystyle\lim_{x\to l}\dfrac{w}{(l-x)^{1/2}}=\dfrac{K'}{E'},
+\end{cases}
+$$
+где $C'=2C_l$; $\,\,\,\mu'=12\mu$; $\,\,\,E'=\dfrac{E}{1-\nu^2}$; $\,\,\,K'=\dfrac{8K_{Ic}}{\sqrt{2\pi}}$.
+\end{textblock*}
+
+\begin{textblock*}{7cm}(8.5cm,1.7cm)
+\includegraphics[width=4cm]{pkn_model_3D.jpg}
+\end{textblock*}
+
+\begin{textblock*}{7cm}(7.5cm,6.3cm)
+\includegraphics[width=5cm]{pkn_model_A-A_plane.jpg}
+\end{textblock*}
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Модель трещины автоГРП = модель PKN в случае доминирования утечек}
+
+\end{frame}
+
+
+\begin{frame}
 \frametitle{Схема перераспределения потоков между трещинами гидроразрыва и законы Кирхгофа}
 
-\begin{textblock*}{10cm}(1cm,1.5cm)
+\begin{textblock*}{11cm}(1cm,1.5cm)
 %\tiny Подпись к рисунку
 \includegraphics[width=10cm]{flow_distribution_scheme.jpg}
 \end{textblock*}
 
-\begin{textblock*}{4cm}(0cm,7.5cm)
-$$Q_0=\sum\limits_{i=1}^{N}Q_i\,\,\,;$$
+\begin{textblock*}{4cm}(-0.5cm,7.5cm)
+$$\boxed{Q_0=\sum\limits_{i=1}^{N}Q_i}$$
 \end{textblock*}
 
-\begin{textblock*}{10.5cm}(2.7cm,7.5cm)
-$$p_0=\sigma_{\text{min},i}+p_{\text{net},i}+\Delta p_{\text{perf},i}-\sum_{j=1}^{i}{\Delta p_{h,\,j}}+\sum_{j=1}^{i}\Delta p_{\text{fric},\,j}$$
+\begin{textblock*}{11cm}(2.2cm,7.5cm)
+$$\boxed{p_0=\sigma_{\text{min},i}+p_{\text{net},i}+\Delta p_{\text{perf},i}-\sum_{j=1}^{i}{\Delta p_{h,\,j}}+\sum_{j=1}^{i}\Delta p_{\text{fric},\,j}}$$
 \end{textblock*}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Запись в векторной форме}
+
+Вектор неизвестных:
+$$Q^T=\left[Q_1,Q_2,...,Q_N,p_0\right]$$
+
+Вектор невязок:
+$$\left[F_1,F_2,...,F_N,F_{N+1}\right],$$
+где
+$$
+F_i=
+\begin{cases}
+\sigma_{\text{min},i}+p_{\text{net},i}+\Delta p_{\text{perf},i}-\sum\limits_{j=1}^{i}{\Delta p_{h,j}}+\sum\limits_{j=1}^{i}{\Delta p_{\text{fric},j}}-p_0\\\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\left(\text{при }i\leqslant N\right)\\\ \\
+Q_0-\sum\limits_{i=1}^{N}{Q_i}\left(\text{при }i=N+1\right)
+\end{cases}
+$$
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Итеративная процедура решения}
+Матрица Якоби:
+$$J = \begin{bmatrix}
+	\dfrac{\partial F_1}{\partial Q_1} & \dots & \dfrac{\partial F_1}{\partial Q_N} & \dfrac{\partial F_1}{\partial p_0} \\
+	\vdots & \ddots & \vdots & \vdots \\
+	\dfrac{\partial F_{N+1}}{\partial Q_1} & \dots & \dfrac{\partial F_{N+1}}{\partial Q_N} & \dfrac{\partial F_{N+1}}{\partial p_0} \\
+	\end{bmatrix}
+$$
+
+Выражение:
+$$\overline{Q}^{k+1}=\overline{Q}^k-J^{-1}\overline{F}^k$$
+\ \\
+
+Начальное приближение:
+$Q_i=Q_0/N\text{ и }p_0=\sigma_i\text{ при } i\in\left[1,N\right]$
+\ \\
+
+Условие остановки:
+$\left|\overline{Q}^{k+1}-\overline{Q}^k\right|^2\leqslant10^{-4}$
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Пример результатов решателя уравнений Кирхгофа}
 
 \end{frame}
 
 
 \begin{frame}
 \frametitle{Формула Кёнинга}
+Зависимость полудлины трещины автоГРП от расхода жидкости, репрессии на пласт и фильтрационно-ёмкостных свойств пласта:
+$$
+x_{\!f}=\frac{Q\mu\sqrt{\pi\kappa t}}{2\pi k_eh\left(p_{\!f}-p_e\right)},
+$$
+где
+$\kappa=\dfrac{k_e}{\varphi_e\mu c_t}$ -- пьезопроводность пласта;
+\end{frame}
 
+
+\begin{frame}
+\frametitle{Приращение полудлины трещины}
+
+Полная производная полудлины трещины $x_{\!f}$ по времени $t$:
+$$
+\frac{dx_{\!f}}{dt}=\frac{\partial x_{\!f}}{\partial t}+\frac{\partial x_{\!f}}{\partial Q}\frac{dQ}{dt}+\frac{\partial x_{\!f}}{\partial p_{\!f}}\frac{dp_{\!f}}{dt},
+$$
+где
+$$
+\frac{\partial x_{\!f}}{\partial t}=\frac{Q\mu}{4\pi k_eh\left(p_{\!f}-p_e\right)}\sqrt{\frac{\pi\kappa}{t}}\,\,\,\,\,;\,\,\,\,\,\frac{\partial x_{\!f}}{\partial Q}=\frac{\mu\sqrt{\pi\kappa t}}{2\pi k_eh\left(p_{\!f}-p_e\right)};
+$$
+
+$$
+\frac{\partial x_{\!f}}{\partial p_{\!f}}=-\frac{Q\mu\sqrt{\pi\kappa t}}{2\pi k_eh\left(p_{\!f}-p_e\right)^2}
+$$
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Приращение полудлины трещины}
+
+Полная производная полудлины трещины $x_{\!f}$ по времени $t$:
+\small
+$$
+\frac{dx_{\!f}}{dt}=\frac{Q\mu}{4\pi k_eh\left(p_{\!f}-p_e\right)}\sqrt{\frac{\pi\kappa}{t}}\,+\,\frac{\mu\sqrt{\pi\kappa t}}{2\pi k_eh\left(p_{\!f}-p_e\right)}\frac{dQ}{dt}\,-\,\frac{Q\mu\sqrt{\pi\kappa t}}{2\pi k_eh\left(p_{\!f}-p_e\right)^2}\frac{dp_{\!f}}{dt}
+$$
+\normalsize
+\ \\
+
+Приращение полудлины трещины на каждом шаге по времени:
+$$
+dx_{\!f}=\frac{dx_{\!f}}{dt}dt
+$$
+\small
+$$
+dx_{\!f}=\underbrace{\frac{Q\mu}{4\pi k_eh\left(p_{\!f}-p_e\right)}\sqrt{\frac{\pi\kappa}{t}}dt}_{\text{за счёт изменения времени}}\,+\,\underbrace{\frac{\mu\sqrt{\pi\kappa t}}{2\pi k_eh\left(p_{\!f}-p_e\right)}dQ}_{\substack{\text{за счёт изменения расхода}\\\text{на трещине}}}\,-\,\underbrace{\frac{Q\mu\sqrt{\pi\kappa t}}{2\pi k_eh\left(p_{\!f}-p_e\right)^2}dp_{\!f}}_{\substack{\text{за счёт изменения давления}\\\text{в трещине}}}
+$$
+\normalsize
 
 \end{frame}
 
 
 \begin{frame}
-\frametitle{Использование полной производной полудлины трещины по времени}
+\frametitle{Результат совместного использования формулы Кёнинга с решателем уравнений Кирхгофа}
 
 
 \end{frame}
 
+\begin{frame}
+\frametitle{Влияние резкого ухудшения качества перфораций на рост трещин}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Выводы}
+
+\end{frame}
 
 
 \end{document}
