@@ -10,3 +10,4 @@
 5 | Заметки для ВКР | [GO TO PDF](https://mualal.github.io/hydrofracturing/vkr-notes/main.pdf)
 6 | Промежуточный отчёт | [GO TO PDF](https://mualal.github.io/hydrofracturing/report/main.pdf)
 7 | Презентация к ВКР | [GO TO PDF](https://mualal.github.io/hydrofracturing/vkr-presentation/main.pdf)
+8 | Статьи Е.В. Донцова | [GO TO PDF](https://mualal.github.io/hydrofracturing/Dontsov-articles/main.pdf)
