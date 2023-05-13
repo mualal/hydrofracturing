@@ -2,15 +2,118 @@
 
 \begin{document}
 
+\numberwithin{equation}{subsection}
+
 \section*{Приближённое решение для радиальной трещины ГРП, учитывающее трещиностойкость, вязкость жидкости и утечки (Е.В. Донцов)}
 \addcontentsline{toc}{section}{Приближённое решение для радиальной трещины ГРП, учитывающее трещиностойкость, вязкость жидкости и утечки (Е.В. Донцов)}
 
 \textbf{Аннотация}
 
+В данной статье разработано приближенное решение в замкнутой форме для радиальной модели трещины ГРП, поведение которой определяется взаимодействием трех конкурирующих физических процессов, связанных с вязкостью жидкости, трещиностойкостью и утечкой жидкости.
+Основное допущение, которое позволяет построить решение, заключается в том, что поведение трещины в основном определяется трехпроцессной многомасштабной асимптотикой кончика и глобальным балансом объема жидкости.
+Сначала разработанное приближение сравнивается с существующими решениями для всех предельных режимов распространения.
+Затем строится карта решений, на которой указаны области применимости предельных решений.
+Также показано, что построенная аппроксимация точно улавливает скейлинг, связанный с переходом от какого-либо одного предельного решения к другому.
+Разработанная аппроксимация тестируется в сравнении с эталонным численным решением; продемонстрировано, что точность прогнозов ширины и радиуса трещины находится в пределах долей процента для широкого диапазона параметров.
+В результате построенная аппроксимация дает быстрое решение для радиальной трещины ГРП, которое может быть использовано для быстрых расчётов дизайна ГРП или в качестве опорного решения для оценки точности различных симуляторов ГРП.
 
 \subsection{Введение}
 
+Трещины гидроразрыва представляют собой заполненные жидкостью трещины, которые распространяются под действием давления жидкости, действующего вдоль поверхности трещины.
+Наиболее распространенным и известным применением ГРП является стимуляция нефтяных и газовых скважин с целью увеличения добычи углеводородов [1].
+Другие промышленные применения включают процесс восстановления отходов [2], утилизацию отходов [3] и предварительное кондиционирование при добыче горных пород [4].
+Гидроразрывы также встречаются в природе в процессе подъема магмы через литосферу за счет силы плавучести [5–9] или в виде флюидонаполненных трещин в ложах ледников [10].
+
+На протяжении многих лет рассматривались различные геометрические формы трещин гидроразрыва.
+Усилия исследователей сместились от разработки простых моделей, таких как модель Христиановича–Желтова–Гиртсма–Де Клерка (KGD) для трещины в условиях плоской деформации [11], к более сложным моделям планарной трещины гидроразрыва [12–14], множественным трещинам гидроразрыва [15–17] или сети трещин [18].
+Подробные обзоры различных моделей ГРП можно найти в [19–21].
+Кроме того, существуют методы, в которых трещины не моделируются явно, такие как фазовое поле [22, 23], метод отдельных элементов [24, 25] и перидинамика [26].
+Основным преимуществом таких методологий является возможность легче (чем обычными методами) расчитывать трещины сложной геометрии.
+В то же время прогнозы таких подходов должны быть тщательно проверены на соответствие эталонным решениям, чтобы гарантировать, что новые методы способны отразить все особенности традиционных подходов.
+
+Известно, что даже для простейших геометрий трещины ГРП подчиняются сложному многомасштабному поведению, см. к примеру подробный обзор [27].
+Эта многомасштабная природа возникает как во времени, когда несколько масштабов времени определяют эволюцию трещины, так и в пространстве, где решение может претерпевать изменения на разных масштабах длины области кончика.
+Как указано в [27], масштабы времени и длины связаны;
+то есть конкретный временной масштаб в развитии трещины соответствует преобладанию одного масштаба длины в области кончика.
+Признавая важность и многомасштабный характер концевой области, многие исследования были посвящены именно количественной оценке поведения гидроразрыва в области кончика [28–35].
+С другой стороны, временная эволюция и режимы распространения были изучены для плоской трещины KGD в [36–40] и для радиальной трещины ГРП в [40–44].
+В недавней обзорной статье [27] представлен более подробный обзор результатов и показана сложность поведения трещины даже при простой геометрии.
+
+Ввиду многомасштабного поведения трещины гидроразрыва основной целью данной статьи является количественная оценка такого поведения для случая радиальной трещины ГРП, где последняя приводится в движение ньютоновской жидкостью и распространяется в проницаемой среде в предположении отсутствия задержки фронта жидкости от фронта трещины.
+Большинство предыдущих исследований, посвященных проблеме трещины в форме копейки, были сосредоточены на предельных режимах распространения и асимптотических решениях в замкнутой форме (или точных аппроксимациях) для задачи [40–43].
+Единственным исключением является работа [44], в которой получено численное решение полной задачи.
+Численное решение, однако, относительно трудно получить из-за временной и пространственной многомасштабной природы решения.
+Напротив, в этом (текущем) исследовании разработано приближенное решение в закрытой форме, которое дает результаты практически мгновенно и точно отражает сложное поведение радиальной трещины ГРП во всех масштабах длины и времени.
+В частности, разработанное решение способно описать все существующие предельные решения и все возможные переходы между ними, так что оно покрывает все траектории в параметрическом пространстве для рассматриваемой задачи.
+Такой вывод стал возможным благодаря использованию замкнутой аппроксимации асимптотического решения для кончика, полученной в [34], которая используется для аппроксимации профиля ширины трещины.
+Как только геометрия трещины известна, глобальный баланс объёма жидкости используется для определения поведения решения.
+
+Важность полученного решения можно резюмировать следующим образом.
+Во-первых, оно показывает, что область кончика играет решающую роль в моделировании гидроразрыва.
+Оно также позволяет быстро получить решение, которое может быть полезно для быстрой оценки геометрии трещины для любых значений трещиностойкости, вязкости жидкости и утечки.
+Благодаря относительно простой реализации решения его можно использовать как опорное решение для оценки точности других симуляторов ГРП и одновременно как начальное условие для повышения устойчивости численных схем на ранних временах.
+Наконец, полученная аппроксимация позволяет построить карту решений, которая указывает области применимости предельных решений и позволяет легко определить, соответствует ли решение при заданных параметрах задачи одному из предельных случаев.
+
+Эта статья организована следующим образом.
+Раздел 2 описывает основные уравнения для радиальной трещины гидроразрыва с утечкой.
+Раздел 3 описывает процедуру получения приближенного решения.
+Сравнение разработанного приближения с существующими предельными решениями представлено в разделе 4.
+Раздел 5 содержит описание структуры решения, где указаны зоны применимости предельных решений.
+Наконец, в разделе 6 оценивается точность аппроксимации путем сравнения ее предсказаний с эталонным численным решением, за которым следует краткое резюме полученных результатов.
+
 \subsection{Основные уравнения для радиальной трещины ГРП}
+
+В данном исследовании рассматривается распространение осесимметричной (<<радиальной>> или <<копеечной>>) формы трещины гидроразрыва в проницаемой породе [27, 44].
+В модели появляются четыре основных параметра материала, которые для удобства можно ввести в масштабированном виде, как
+\beq
+\mu'=12\mu,\,\,\,\,\,\,
+E'=\frac{E}{1-\nu^2},\,\,\,\,\,\,
+K'=4\left(\frac{2}{\pi}\right)^{1/2}K_{Ic},\,\,\,\,\,\,
+C'=2C_L,
+\eeq
+где $\mu$ -- вязкость жидкости,
+$E$ -- модуль Юнга,
+$\nu$ -- коэффициент Пуассона,
+$K_{Ic}$ -- мода 1 трещиностойкости породы,
+$C_L$ -- параметр утечки Картера.
+
+Баланс объёма несжимаемой ньютоновской жидкости внутри трещины можно записать в виде
+\beq
+\frac{\partial w}{\partial t}+\frac{1}{r}\frac{\partial}{\partial r}\left(rq\right)+\frac{C'}{\sqrt{t-t_0(r)}}=Q_0\delta(r),\,\,\,\,\,\,q=-\frac{w^3}{\mu'}\frac{\partial p}{\partial r},
+\eeq
+где $w(r,t)$ -- ширина трещины,
+$q$ -- поток в радиальном направлении,
+слагаемое, содержащее $C'$, учитывает утечку по модели Картера,
+$t_0(r)$ -- момент времени, в который фронт трещины находился в точке $r$,
+$p$ -- давление жидкости,
+$Q_0$ -- скорость закачки жидкости (считается постоянной во времени).
+
+Уравнение упругости, которое характеризует упругое равновесие породы, связывает давление жидкости внутри трещины с шириной трещины как [41,44,45]
+\beq
+p(r,t)=-\frac{E'}{2\pi R}\int\limits_{0}^{R}{M\!\left(\frac{r}{R},\frac{r'}{R}\right)\frac{\partial w(r',t)}{\partial r'}dr'},
+\eeq
+где $R$ -- радиус трещины и ядро равно
+\beq
+M(\rho,s)=
+\begin{cases}
+\dfrac{1}{\rho}\,K\!\left(\dfrac{s^2}{\rho^2}\right)+\dfrac{\rho}{s^2-\rho^2}\,E\!\left(\dfrac{s^2}{\rho^2}\right),\,\,\,\rho>s,\vspace*{3mm}\\
+\dfrac{s}{s^2-\rho^2}\,E\!\left(\dfrac{\rho^2}{s^2}\right),\,\,\,\,\,\rho<s.
+\end{cases}
+\eeq
+Функции $K(\cdot)$ и $E(\cdot)$ обозначают полные эллиптические интегралы первого и второго рода соответственно.
+
+Распространение трещин моделируется классическим результатом Механики Линейно-Упругого Разрушения (LEFM), в котором раскрытие трещины в области кончика соответствует решению квадратного корня [46]
+\beq
+w\to\frac{K'}{E'}\left(R-r\right)^{1/2},r\to R,
+\eeq
+что означает, что коэффициент интенсивности напряжений равен трещиностойкости для распространяющейся трещины.
+Условие распространения (2.5) также должно быть дополнено условием отсутствия потока на кончике трещины, т.е. $q(R,t)=0$.
+
+Для использования в будущем полезно рассмотреть глобальный баланс объёма жидкости, который можно получить, интегрируя (2.2) по времени и пространству как
+\beq
+\int\limits_{0}^{R}{\left(w(r',t)+2C'\sqrt{t-t_0(r')}\right)r'dr'}=\frac{Q_0t}{2\pi},
+\eeq
+где для вывода результата использовались равенства $q(R,t)=0$ и $w(R,t)=0$.
 
 \subsection{Приближённое решение для радиальной трещины ГРП}
 
@@ -47,6 +150,99 @@
 \subsection*{Список использованной литературы}
 \addcontentsline{toc}{subsection}{Список использованной литературы}
 
+1. Economides MJ, Nolte KG (eds). 2000 Reservoir stimulation, 3rd edn. Chichester, UK: John Wiley \& Sons.
+
+2. Frank U, Barkley N. 2005 Remediation of low permeability subsurface formations by fracturing enhancements of soil vapor extraction. J.Hazard. Mater. 40, 191–201. (doi:10.1016/0304-3894(94) 00069-S)
+
+3. Abou-Sayed AS, Andrews DE, Buhidma IM. 1989 Evaluation of oily waste injection below the permafrost in prudhoe bay field. In Proc.the CaliforniaRegionalMeetings,Bakersfield,CA,5–7 April, pp. 129–142. Richardson, TX: Society of Petroleum Engineers.
+
+4. Jeffrey RG, Mills KW. 2000 Hydraulic fracturing applied to inducing longwall coal mine goaf falls. In PacificRocks2000,Balkema,Rotterdam, pp. 423–430.
+
+5. Spence D, Turcotte D. 1985 Magma-driven propagation of cracks. J.Geophys.Res. 90, 575–580. (doi:10.1029/JB090iB01p00575)
+
+6. Lister JR. 1990 Buoyancy-driven fluid fracture: the effects of material toughness and of low-viscosity precursors.J.FluidMech.210,263–280.(doi:10.1017/ S0022112090001288)
+
+7. Rubin AM. 1995 Propagation of magmafilled cracks. Annu.Rev.EarthPlanet 23, 287–336. (doi:10.1146/annurev.ea.23.050195. 001443)
+
+8. Roper SM, Lister JR. 2007 Buoyancy-driven crack propagation: the limit of large fracture toughness. J.FluidMech. 580, 359–380. (doi:10.1017/S002211 2007005472)
+
+9. Dontsov EV. 2016 Propagation regimes of buoyancy-driven hydraulic fractures with solidification. J.FluidMech. 797, 1–28. (doi:10.1017/ jfm.2016.274)
+
+10. Tsai VC, Rice JR. 2010 A model for turbulent hydraulic fracture and application to crack propagation at glacier beds. J.Geophys.Res. 115, F03007. (doi:10.1029/2009JF001474)
+
+11. Khristianovic SA, Zheltov YP. 1955 Formation of vertical fractures by means of highly viscous fluids. In Proc.4th World Petroleum Congress, Rome, Italy, 6–16June, vol. 2, pp. 579–586.
+
+12. Vandamme L, Curran JH. 1989 A three-dimensional hydraulic fracturing simulator. Int. J. Numer. MethodsEng. 28, 909–927. (doi:10.1002/nme. 1620280413)
+
+13. Peirce A, Detournay E. 2008 An implicit level set method for modeling hydraulically driven fractures. Comput. Methods Appl.Mech.Eng. 197, 2858–2885. (doi:10.1016/j.cma.2008.01.013)
+
+14. Dontsov EV, Peirce AP. 2017 A multiscale implicit level set algorithm (ILSA) to model hydraulic fracture propagation incorporating combined viscous, toughness, and leak-off asymptotics. Comput.MethodsAppl.Mech. Eng. 313, 53–84. (doi:10.1016/j.cma.2016.09.017)
+
+15. Peirce AP, Bunger AP. 2014 Interference fracturing: non-uniform distributions of perforation clusters that promote simultaneous growth of multiple hydraulic fractures. SPEJournal 20, 384–395. (doi:10.2118/172500-PA)
+
+16. Wu K, Olson J, Balhoff MT, Yu W. 2015 Numerical analysis for promoting uniform development of simultaneous multiple fracture propagation in horizontal wells. In Proc.theSPEAnnual Technical Conf.and Exhibition, Houston, TX, 28–30 September. SPE-174869-MS. Society of Petroleum Engineers.
+
+17. Dontsov EV, Peirce AP. 2016 Implementing a universal tip asymptotic solution into an implicit level set algorithm (ILSA) for multiple parallel hydraulic fractures. In 50th U.S. Rock Mechanics/Geomechanics Symposium, Houston, TX, 26–29June. American Rock Mechanics Association.
+
+18. Kresse O, Weng X, Gu H, Wu R. 2013 Numerical modeling of hydraulic fracture interaction in complex naturally fractured formations. RockMech. RockEng. 46, 555–558. (doi:10.1007/s00603012-0359-2)
+
+19. Adachi J, Siebrits E, Peirce A, Desroches J. 2007 Computer simulation of hydraulic fractures. Int.J. RockMech.Min.Sci. 44, 739–757. (doi:10.1016/j. ijrmms.2006.11.006)
+
+20. Weng X. 2015 Modeling of complex hydraulic fractures in naturally fractured formation. J.Unconv. OilGasRes. 9, 114–135. (doi:10.1016/j.juogr. 2014.07.001)
+
+21. Peirce AP. 2016 Implicit level set algorithms for modelling hydraulic fracture propagation. Phil. Trans.R.Soc.A 374, 20150423. (doi:10.1098/rsta.2015.0423)
+
+22. Bourdin B, Chukwudozie C, Yoshioka K. 2012 A variational approach to the numerical simulation of hydraulic fracturing. In SPEAnnualTechnical Conferenceand Exhibition, SanAntonio, TX, 8–10 October. SPE 159154. Society of Petroleum Engineers.
+
+23. Mikelic A, Wheeler MF, Wick T. 2015 Phase-field modeling of a fluid-driven fracture in a poroelastic medium. Comput.Geosci. 19, 1171–1195. (doi:10.1007/s10596-015-9532-5)
+
+24. Damjanac B, Detournay C, Cundall PA, Varun. 2013 Three-dimensional numerical model of hydraulic fracturing in fractured rock mass. In Effective and sustainablehydraulicfracturing (eds AP Bunger, J McLennan, R Jeffrey), ch. 41, pp. 819–830. Rijeka, Croatia: Intech.
+
+25. Damjanac B, Cundall P. 2016 Application of distinct element methods to simulation of hydraulic fracturing in naturally fractured reservoirs. Comput. Geotech. 71, 283–294.\newline (doi:10.1016/j.compgeo. 2015.06.007)
+
+26. Ouchi H, Katiyar A, Foster JT, Sharma MM. 2015 A peridynamics model for the propagation of hydraulic fractures in heterogeneous, naturally fractured reservoirs. In SPE Hydraulic Fracturing Technology Conference, TheWoodlands, TX, 3–5 February. SPE 173361. Society of Petroleum Engineers.
+
+27. Detournay E. 2016 Mechanics of hydraulic fractures. Annu.Rev.FluidMech. 48, 31139. (doi:10.1146/ annurev-fluid-010814-014736)
+
+28. Desroches J, Detournay E, Lenoach B, Papanastasiou P, Pearson JRA, Thiercelin M, Cheng AH-D. 1994 The crack tip region in hydraulic fracturing. Proc.R.Soc. Lond.A 447, 39–48. (doi:10.1098/rspa.1994.0127)
+
+29. Lenoach B. 1995 The crack tip solution for hydraulic fracturing in a permeable solid. J.Mech.Phys.Solids 43, 1025–1043. (doi:10.1016/0022-5096(95) 00026-F)
+
+30. Garagash D, Detournay E. 2000 The tip region of a fluid-driven fracture in an elastic medium. J.Appl. Mech. 67, 183–192. (doi:10.1115/1.321162)
+
+31. Detournay E, Garagash D. 2003 The tip region of a fluid-driven fracture in a permeable elastic solid. J.FluidMech. 494, 1–32. (doi:10.1017/S002211 2003005275)
+
+32. Garagash DI, Detournay E, Adachi JI. 2011 Multiscale tip asymptotics in hydraulic fracture with leak-off. J.FluidMech. 669, 260–297. (doi:10.1017/S0022 11201000501X)
+
+33. Lecampion B, Peirce AP, Detournay E, Zhang X, Chen Z, Bunger AP, Detournay C, Napier J, Abbas S, Garagash D, Cundall P. 2013 The impact of the near-tip logic on the accuracy and convergence rate of hydraulic fracture simulators compared to reference solutions. In Effective and sustainable hydraulic fracturing (eds AP Bunger, J McLennan, R Jeffrey), ch. 43, pp. 855–873. Rijeka, Croatia: Intech.
+
+34. Dontsov E, Peirce A. 2015 A non-singular integral equation formulation to analyze multiscale behaviour in semi-infinite hydraulic fractures. J.FluidMech. 781, R1. (doi:10.1017/jfm.2015.451)
+
+35. Dontsov EV. 2016 Tip region of a hydraulic fracture driven by a laminar-to-turbulent fluid flow. J.Fluid Mech. 797, R2. (doi:10.1017/jfm.2016.322)
+
+36. Adachi JI, Detournay E. 2002 Self-similar solution of a plane-strain fracture driven by a power-law fluid. Int.J.Numer.Anal.MethodsGeomech. 26, 579–604. (doi:10.1002/nag.213)
+
+37. Garagash D, Detournay E. 2005 Plane-strain propagation of a fluid-driven fracture: small toughness solution. ASMEJ.Appl.Mech. 72, 916–928. (doi:10.1115/1.2047596)
+
+38. Garagash DI. 2006 Plane-strain propagation of a fluid-driven fracture during injection and shut-in: asymptotics of large toughness. Eng.Fract.Mech. 73, 456–481. (doi:10.1016/j.engfracmech. 2005.07.012)
+
+39. Adachi JI, Detournay E. 2008 Plane-strain propagation of a hydraulic fracture in a permeable rock. Eng.Fract.Mech. 75, 4666–4694. (doi:10.1016/j.engfracmech.2008.04.006)
+
+40. Detournay E. 2004 Propagation regimes of fluid-driven fractures in impermeable rocks. Int.J. Geomech. 4, 35–45. (doi:10.1061/(ASCE)15323641(2004)4:1(35))
+
+41. Savitski AA, Detournay E. 2002 Propagation of a fluid-driven penny-shaped fracture in an impermeable rock: asymptotic solutions. Int. J. Solids Struct. 39, 6311–6337.\newline (doi:10.1016/S00207683(02)00492-4)
+
+42. Bunger A, Detournay E, Garagash D. 2005 Toughness-dominated hydraulic fracture with leak-off. Int.J.Fract. 134, 175–190. (doi:10.1007/ s10704-005-0154-0)
+
+43. Bunger AP, Detournay E. 2007 Early time solution for a penny-shaped hydraulic fracture. ASCEJ.Eng. Mech. 133, 175–190. (doi:10.1061/(ASCE)07339399(2007)133:5(534))
+
+44. Madyarova MV. 2003 Fluid-driven penny-shaped fracture in elastic medium. Master’s thesis, University of Minnesota, Minneapolis.
+
+45. Cleary M, Wong S. 1985 Numerical simulation of unsteady fluid flow and propagation of a circular hydraulic fracture. Int.J.Numer.Anal.Methods Geomech. 9, 1–14. (doi:10.1002/nag.161009 0102)
+
+46. Rice JR. 1968 Mathematical analysis in the mechanics of fracture. In Fracture:anadvanced treatise, vol. II (ed. H Liebowitz), ch. 3, pp. 191–311. New York, NY: Academic Press.
+
+47. Dontsov EV. 2016 Data from: An approximate solution for a penny-shaped hydraulic fracture that accounts for fracture toughness, fluid viscosity and leak-off. Dryad Digital Repository. (doi:10.5061/dryad.gh469)
 
 \newpage
 \setcounter{figure}{0}
