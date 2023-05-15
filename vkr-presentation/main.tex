@@ -104,8 +104,8 @@ $$
 \begin{cases}
 \dfrac{\partial w}{\partial t}+\dfrac{\partial q}{\partial x}+\dfrac{C'}{\sqrt{t-t_0(x)}}=Q_0(t)\delta(x),\\[15pt]
 q=-\dfrac{w^3}{\mu'}\dfrac{\partial p}{\partial x},\\[5pt]
-p(x,t)=\sigma_0-\dfrac{E'}{4\pi}\displaystyle\int\limits_{-l}^{l}\dfrac{w(s)ds}{(x-s)^2},\\[20pt]
-\displaystyle\lim_{x\to l}\dfrac{w}{(l-x)^{1/2}}=\dfrac{K'}{E'},
+p(x,t)=\sigma_0-\dfrac{E'}{4\pi}\displaystyle\int\limits_{-L(t)}^{L(t)}\dfrac{w(s)ds}{(x-s)^2},\\[20pt]
+\displaystyle\lim_{x\to L}\dfrac{w}{(L-x)^{1/2}}=\dfrac{K'}{E'},
 \end{cases}
 $$
 где $C'=2C_l$; $\,\,\,\mu'=12\mu$; $\,\,\,E'=\dfrac{E}{1-\nu^2}$; $\,\,\,K'=\dfrac{8K_{Ic}}{\sqrt{2\pi}}$.
@@ -138,7 +138,7 @@ $$
 \begin{cases}
 \dfrac{\partial w}{\partial t}+\dfrac{1}{r}\dfrac{\partial}{\partial r}\!\left(rq\right)+\dfrac{C'}{\sqrt{t-t_0(r)}}=Q_0\delta(r),\\[15pt]
 q=-\dfrac{w^3}{\mu'}\dfrac{\partial p_n}{\partial r},\\[5pt]
-p_n(r,t)=-\dfrac{E'}{2\pi R}\displaystyle\int\limits_{0}^{R}M\!\left(\dfrac{r}{R},\dfrac{r'}{R}\right)\dfrac{\partial w(r',t)}{\partial r'}dr',\\[20pt]
+p_n(r,t)=-\dfrac{E'}{2\pi R}\displaystyle\int\limits_{0}^{R(t)}M\!\left(\dfrac{r}{R},\dfrac{r'}{R}\right)\dfrac{\partial w(r',t)}{\partial r'}dr',\\[20pt]
 \displaystyle\lim_{r\to R}\dfrac{w}{(R-r)^{1/2}}=\dfrac{K'}{E'},
 \end{cases}
 $$
@@ -179,9 +179,9 @@ $$
 $$
 \begin{cases}
 \dfrac{\partial\bar{w}}{\partial t}+\dfrac{\partial\bar{q}_x}{\partial x}+\dfrac{C'}{\sqrt{t-t_0(x)}}=\dfrac{Q_0}{H}\delta(x),\\[15pt]
-\bar{q}_x=-\dfrac{\bar{w}^3}{\pi^2\mu}\dfrac{\partial p}{\partial x},\\[15pt]
-p(x)=-\dfrac{2E'}{\pi^2H}\displaystyle\int\limits_{-l(t)}^{l(t)}\bar{w}(x')\dfrac{dG(2(x'-x)/H)}{dx'}dx',\\[22pt]
-\displaystyle\lim_{x\to l}\dfrac{w}{(l-x)^{1/2}}=\dfrac{K'}{E'},
+\bar{q}_x=-\dfrac{\bar{w}^3}{\pi^2\mu}\dfrac{\partial p_n}{\partial x},\\[15pt]
+p_n(x,t)=\dfrac{2E'}{\pi^2H}\displaystyle\int\limits_{-L(t)}^{L(t)}\bar{w}(x',t)\dfrac{dG(2(x'-x)/H)}{dx'}dx',\\[22pt]
+\displaystyle\lim_{x\to L}\dfrac{w}{(L-x)^{1/2}}=\dfrac{K'}{E'},
 \end{cases}
 $$
 где $C'=2C_l$; $\,\,\,\mu'=12\mu$; $\,\,\,E'=\dfrac{E}{1-\nu^2}$; $\,\,\,K'=\dfrac{8K_{Ic}}{\sqrt{2\pi}}$;
@@ -190,8 +190,8 @@ G(s)=\frac{\sqrt{1+s^2}}{s}\,E\!\left(\frac{1}{1+s^2}\right)
 $$
 \end{textblock*}
 
-\begin{textblock*}{7cm}(7cm,1cm)
-\includegraphics[width=5.5cm]{pkn_model_3D.jpg}
+\begin{textblock*}{7cm}(7.4cm,1cm)
+\includegraphics[width=5.2cm]{pkn_model_3D.jpg}
 \end{textblock*}
 
 \begin{textblock*}{7cm}(7.5cm,6.3cm)
@@ -270,7 +270,7 @@ $$
 F_i=
 \begin{cases}
 \sigma_{\text{min},i}+p_{\text{net},i}+\Delta p_{\text{perf},i}-\sum\limits_{j=1}^{i}{\Delta p_{h,j}}+\sum\limits_{j=1}^{i}{\Delta p_{\text{fric},j}}-p_0\\\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\left(\text{при }i\leqslant N\right)\\\ \\
-Q_0-\sum\limits_{i=1}^{N}{Q_i}\left(\text{при }i=N+1\right)
+Q_0-\sum\limits_{j=1}^{N}{Q_j}\left(\text{при }i=N+1\right)
 \end{cases}
 $$
 
@@ -315,6 +315,15 @@ x_{\!f}=\frac{Q\mu\sqrt{\pi\kappa t}}{2\pi k_eh\left(p_{\!f}-p_e\right)},
 $$
 где
 $\kappa=\dfrac{k_e}{\varphi_e\mu c_t}$ -- пьезопроводность пласта;
+
+\begin{textblock*}{6cm}(0.5cm,8.9cm)
+\tiny
+\textcolor{lit_gray}{E.J.L. Koning. Fractured water-injection wells. Analytical modelling of fracture propagation. SPE 14684, 1985}
+\end{textblock*}
+
+\normalsize
+
+
 \end{frame}
 
 
