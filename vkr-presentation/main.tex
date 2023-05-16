@@ -39,7 +39,7 @@
 %Санкт-Петербургский Политехнический университет Петра Великого
 %}
 
-%\definecolor{new_green}{rgb}{0.20,0.68,0}
+\definecolor{new_green}{rgb}{0.20,0.68,0}
 \definecolor{lit_gray}{gray}{0.3}
 
 \begin{document}
@@ -81,8 +81,9 @@
 
 
 \begin{frame}
-\frametitle{Основные компоненты любой модели трещины ГРП}
+\frametitle{Основные компоненты полной модели трещины ГРП}
 
+\begin{textblock*}{8.8cm}(0.5cm,1.5cm)
 \begin{enumerate}[1)]
 	\item закон сохранения жидкости (доминирование или отсутствие утечек);
 	\item уравнение течения жидкости в трещине (в зависимости от реологии жидкости);
@@ -90,6 +91,37 @@
 	\item условие распространения трещины;
 	\item транспорт проппанта
 \end{enumerate}
+\end{textblock*}
+
+\begin{textblock*}{3cm}(9.5cm,1.5cm)
+\includegraphics[width=3cm]{part1_balance.jpg}
+\end{textblock*}
+
+\begin{textblock*}{4cm}(0.5cm,6cm)
+\includegraphics[width=4cm]{part2_flux.jpg}
+\end{textblock*}
+
+\begin{textblock*}{3.5cm}(8.5cm,3.7cm)
+\includegraphics[width=3.5cm]{part3_elasticity.jpg}
+\end{textblock*}
+
+
+\begin{textblock*}{3cm}(5.5cm,5.3cm)
+\tiny
+$$
+w=\sqrt{\frac{32}{\pi}}\frac{K_{I}\left(1-\nu^2\right)}{E}\sqrt{r}
+$$
+\normalsize
+\end{textblock*}
+
+\begin{textblock*}{7.5cm}(5cm,6.5cm)
+\includegraphics[width=7.5cm]{part4_propagation.jpg}
+\end{textblock*}
+
+\begin{textblock*}{6cm}(0.5cm,8.9cm)
+\tiny
+\textcolor{lit_gray}{J.R. Rice. Mathematical analysis in the mechanics of fracture. Fracture: an advanced treatise, vol. II, pp. 191-311, 1968}
+\end{textblock*}
 
 \end{frame}
 
@@ -175,7 +207,7 @@ $$
 
 \scriptsize
 
-\begin{textblock*}{7cm}(0.5cm,1.2cm)
+\begin{textblock*}{7cm}(0.5cm,1cm)
 $$
 \begin{cases}
 \dfrac{\partial\bar{w}}{\partial t}+\dfrac{\partial\bar{q}_x}{\partial x}+\dfrac{C'}{\sqrt{t-t_0(x)}}=\dfrac{Q_0}{H}\delta(x),\\[15pt]
@@ -185,17 +217,36 @@ p_n(x,t)=\dfrac{2E'}{\pi^2H}\displaystyle\int\limits_{-L(t)}^{L(t)}\bar{w}(x',t)
 \end{cases}
 $$
 где $C'=2C_l$; $\,\,\,\mu'=12\mu$; $\,\,\,E'=\dfrac{E}{1-\nu^2}$; $\,\,\,K'=\dfrac{8K_{Ic}}{\sqrt{2\pi}}$;
+\end{textblock*}
+
+\begin{textblock*}{7cm}(2.1cm,7.2cm)
 $$
 G(s)=\frac{\sqrt{1+s^2}}{s}\,E\!\left(\frac{1}{1+s^2}\right)
 $$
 \end{textblock*}
 
-\begin{textblock*}{7cm}(7.4cm,1cm)
+\begin{textblock*}{7cm}(7.4cm,1.5cm)
 \includegraphics[width=5.2cm]{pkn_model_3D.jpg}
 \end{textblock*}
 
 \begin{textblock*}{7cm}(7.5cm,6.3cm)
 \includegraphics[width=5cm]{pkn_model_A-A_plane.jpg}
+\end{textblock*}
+
+\begin{textblock*}{3.7cm}(0cm,6.8cm)
+\tiny
+$$
+\boxed{
+\bar{w}(x)=\frac{1}{H}\!\int\limits_{-H/2}^{H/2}{w(x,z)dz}
+}
+$$
+\end{textblock*}
+
+\begin{textblock*}{7cm}(6cm,1.2cm)
+\tiny
+$$
+w(x,z)=\frac{4}{\pi}\bar{w}(x)\sqrt{1-\left(\frac{2z}{H}\right)^2}
+$$
 \end{textblock*}
 
 \begin{textblock*}{6cm}(0.5cm,8.9cm)
@@ -209,15 +260,89 @@ $$
 
 
 \begin{frame}
-\frametitle{Асимптотические решения модели PKN}
+\frametitle{Параметрическая карта решения модели PKN}
+
+\begin{textblock*}{7cm}(5.5cm,1.2cm)
+\tiny
+$$
+\Omega=\frac{\bar{w}}{w_{*}}\,\,\,\,\,;\,\,\,\,\,\lambda=\frac{l}{l_{*}}\,\,\,\,\,;\,\,\,\,\,\tau=\frac{t}{t_{*}}\,\,\,\,\,;\,\,\,\,\,\xi=\frac{x}{l(t)}
+$$
+\normalsize
+\end{textblock*}
+
+\begin{textblock*}{7cm}(5.5cm,2.2cm)
+\tiny
+$$
+w_{*}=\frac{\left(\pi H\right)^{1/2}K_{Ic}}{E'}\,\,\,\,\,;\,\,\,\,\,l_{*}=\frac{H^2K_{Ic}^4}{2\pi E'^3\mu Q_0}
+$$
+\normalsize
+\end{textblock*}
+
+\begin{textblock*}{7cm}(5.5cm,3.2cm)
+\tiny
+$$
+t_{*}=\frac{H^{7/2}K_{Ic}^5}{2\pi^{1/2}E'^4\mu Q_0^2}\,\,\,\,\,;\,\,\,\,\,\phi=\left(\frac{H^5K_{Ic}^6C'^4}{4\pi^3E'^4\mu^2Q_0^4}\right)^{1/4}
+$$
+\normalsize
+\end{textblock*}
+
+\begin{textblock*}{6cm}(6cm,4.5cm)
+\scriptsize
+\textcolor{red}{
+$K$-режим = доминирование трещиностойкости и отсутствие утечек (пренебрегаем вязкостью)
+}
+\normalsize
+\end{textblock*}
+
+\begin{textblock*}{6cm}(6cm,5.6cm)
+\scriptsize
+\textcolor{magenta}{
+$\tilde{K}$-режим = доминирование трещиностойкости и большие утечки (пренебрегаем вязкостью)
+}
+\normalsize
+\end{textblock*}
+
+\begin{textblock*}{6.5cm}(6cm,6.8cm)
+\scriptsize
+\textcolor{blue}{
+$M$-режим = доминирование вязкости и отсутствие утечек (пренебрегаем трещиностойкостью)
+}
+\normalsize
+\end{textblock*}
+
+\begin{textblock*}{6cm}(6cm,7.8cm)
+\scriptsize
+\textcolor{new_green}{
+$\tilde{M}$-режим = доминирование вязкости и большие утечки (пренебрегаем трещиностойкостью)
+}
+\normalsize
+\end{textblock*}
+
+\begin{textblock*}{4.5cm}(0.5cm,5.2cm)
+\scriptsize
+\renewcommand{\baselinestretch}{0.7}
+В данной работе предполагается, что трещины автоГРП распространяются в режиме больших утечек и доминирования трещиностойкости (пренебрегаем вязкостью).
+В этом режиме решение для среднего раскрытия:
+\vspace*{-3mm}
+$$
+\bar{w}_{\tilde{K}}=\frac{K_{Ic}\sqrt{\pi H}}{E'}
+$$
+\normalsize
+\end{textblock*}
+
+
+
+\begin{textblock*}{5cm}(0.5cm,1.5cm)
+\includegraphics[width=5cm]{pkn_parametric_space.jpg}
+\end{textblock*}
+
+\begin{textblock*}{6cm}(0.5cm,8.9cm)
+\tiny
+\textcolor{lit_gray}{E.V. Dontsov. Analysis of a constant height hydraulic fracture, arXiv:2110.13088v1 [physics.geo-ph], 25 Oct 2021}
+\end{textblock*}
 
 \end{frame}
 
-
-\begin{frame}
-\frametitle{Модель трещины автоГРП = модель PKN в случае доминирования утечек}
-
-\end{frame}
 
 
 \begin{frame}
@@ -242,18 +367,45 @@ $$\boxed{p_0=\sigma_{\text{min},i}+p_{\text{net},i}+\Delta p_{\text{perf},i}-\su
 \begin{frame}
 \frametitle{Чистое давление в трещинах PKN}
 
+$$
+p_{\text{net},i}(Q_i)=a_iQ_i^{\frac{n}{2n+3}}V_i^{\frac{1}{2n+3}},
+$$\\
+\small
+где $a_i=\left(\dfrac{(n+3)(2n+1)^n \cdot K\cdot (E_i')^{2n+2}}{\pi\, 2^{2n}n^n\phi^n h_i^{3n+3}}\right)^{\!\frac{1}{2n+3}}$ -- параметр жёсткости,\newline\\
+$Q_i$ и $V_i$ -- расход на $i$-ой трещине и объём $i$-ой трещины;\newline
+$K$ и $n$ -- реологические параметры степенной (неньютоновской) жидкости;\newline
+$E_i'$ -- модуль плоской деформации $i$-ой трещины;\newline
+$h_i$ -- мощность продуктивной зоны.
+\normalsize
 \end{frame}
 
 
 \begin{frame}
 \frametitle{Падение давления на перфорациях}
+$$
+\Delta p_{\text{perf},i}=\frac{8\rho_s}{\pi^2 C_{d,i}^2 n_{p,i}^2 d_{p_i}^4}Q_i\left|Q_i\right|
+$$\\
+где $\rho_s$ -- средняя плотность смеси;\newline
+$n_{p,i}, d_{p,i}$ -- количество и диаметр перфораций;\newline\\
+$C_{d,i}=\dfrac{\text{min}(d_{jet})}{d_p}$ -- безразмерный коэффициент эрозии (в случае отсутствия твёрдых частичек в потоке $C_{d,i}\in\left[0.5,0.6\right]$, а с твёрдыми частичками в потоке $C_{d,j}\in\left[0.6,0.95\right]$  из-за эрозии перфорации).
 
 \end{frame}
 
 
 \begin{frame}
 \frametitle{Падение давления на трение}
-
+\vspace*{-12mm}
+$$
+\Delta p_{\text{fric},i}=\int\limits_{x_{i-1}}^{x_i}{f\frac{\rho u_{m,i}^2}{R_i}}=\int\limits_{x_{i-1}}^{x_i}{\frac{\rho(c(t,s))\cdot f(Re)\cdot \left(Q_0-\sum\limits_{j=1}^{i-1}{Q_j}\right)^{\!2}}{R_i(s)S_i^2(s)}}ds
+$$\\
+\footnotesize
+где $f=\dfrac{\tau}{\rho u_{m,i}^2/2}$ -- коэффициент трения Фаннинга;\newline\\
+$\rho(c(t,s))$ -- плотность смеси, которая зависит от динамически меняющейся концентрации проппанта;\newline\\
+$u_{m,i}=\dfrac{Q_0-\sum\limits_{j=1}^{i-1}{Q_j}}{S_i}$ -- средняя скорость на рассматриваемом участке трубы;\newline\\
+$S_i$ -- площадь сечения рассматриваемого участка трубы;\newline
+$R_i$ -- радиус рассматриваемого участка трубы;\newline
+$Re$ -- число Рейнольдса.
+\normalsize
 \end{frame}
 
 
@@ -312,9 +464,20 @@ $\left|\overline{Q}^{k+1}-\overline{Q}^k\right|^2\leqslant10^{-4}$
 Зависимость полудлины трещины автоГРП от расхода жидкости, репрессии на пласт и фильтрационно-ёмкостных свойств пласта:
 $$
 x_{\!f}=\frac{Q\mu\sqrt{\pi\kappa t}}{2\pi k_eh\left(p_{\!f}-p_e\right)},
+\vspace*{-3mm}
 $$
+\small
 где
-$\kappa=\dfrac{k_e}{\varphi_e\mu c_t}$ -- пьезопроводность пласта;
+$\kappa=\dfrac{k_e}{\varphi_e\mu c_t}$ -- пьезопроводность пласта;\newline
+
+$Q$ -- расход нагнетаемой в рассматриваемую трещину жидкости;\newline
+$\mu$ -- вязкость жидкости;\newline
+$t$ -- время закачки;
+$k_e$ и $\varphi_e$ -- проницаемость и пористость пласта соответственно;
+$c_t$ -- общая сжимаемость;
+$h$ -- эффективная толщина (мощность) пласта;
+$\Delta p=p_f-p_e$ -- разница между средним давлением в трещине и пластовым давлением.
+\normalsize
 
 \begin{textblock*}{6cm}(0.5cm,8.9cm)
 \tiny
