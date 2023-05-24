@@ -1,0 +1,10 @@
+\chapter{Код для моделирования роста трещин автоГРП в длину}\label{appendix-fractures-growth-modelling}
+
+\begin{pythoncode}
+# формула Кёнинга
+def koning_formula():
+    kappa = k_e / (phi_e * K * c_t)
+    x_frac = Q * K * ((S.Pi * kappa * t)**(1/2)) / \
+        (2 * S.Pi * k_e * h * (p_frac_net + sigma_min - p_e))
+    return x_frac
+\end{pythoncode}

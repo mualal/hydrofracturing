@@ -1,5 +1,17 @@
 .*
 lectures-notes/Screenshots/
 images/HF_pictures.pptx
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.log
+*.out
+*.pyg
+*.xml
+*.synctex
+*.gz
+*.idx
+*.toc
 
 !.gitignore
