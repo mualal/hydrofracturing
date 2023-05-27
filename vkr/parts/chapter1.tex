@@ -13,7 +13,7 @@
 
 Каждая из моделей Pseudo3D, Planar3D и Full3D плохо поддаётся аналитическому анализу.
 Однако при введении дополнительных предположений и допущений модель Planar3D преобразуется в хорошо известные модели (исторически были изучены раньше модели Planar3D), для которых можно провести аналитический анализ (найти длину, раскрытие и давление в трещине в зависимости от координаты и времени).
-В \taref{tab:fracking_models} представлены основные модели трещины ГРП с их допущениями.
+В \taref{tab:fracking_models} представлены основные модели трещины ГРП с их допущениями (использованы схематичные рисунки, заимствованные из работ \cite{valov_baykin_dontsov, baykin_course, adachi, dontsov_peirce}).
 
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
 \noindent % for correct centering
@@ -35,12 +35,12 @@
 	\endfoot
 	\hline
 	\endlastfoot
-	Full3D&Отсутствуют; учёт большого количества физических эффектов позволяет очень точно (часто излишне точно) описать распространение трещины &\hfill\break\makecell[c]{\includegraphics[width=0.6\linewidth]{images/full3D_scheme_better.jpg}}\hfill\break\\ \hline
-	Planar3D&Одна планарная трещина, распространяющаяся в плоскости вдоль направления максимальных горизонтальных напряжений; законы упругости рассматриваются в рамках линейно-упругой механики разрушения в общем случае без дополнительных упрощений; поток жидкости вдоль трещины двумерный&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/planar3D_model_new.jpg}\\\includegraphics[width=\linewidth]{images/planar3D_tip_model_new.jpg}}\hfill\break\\ \hline
-	Pseudo3D&Длина трещины $l(t)$ много больше её высоты $h(x,t)$; высота трещины изменяется как по координате $x$, так и со временем $t$; в каждом вертикальном сечении давление одинаково по сечению (из этого условия следует одномерность течения жидкости в трещине)&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/pseudo3D_model_new.jpg}}\hfill\break\\ \hline
-	Перкинса- Керна- Нордгрена (модель PKN или модель трещины постоянной высоты)&Длина трещины много больше её фиксированной высоты $H$; в каждом вертикальном сечении давление одинаково по сечению (из этого условия следует эллиптичность вертикального сечения трещины и одномерность течения жидкости в трещине)&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/pkn_model_new.jpg}}\hfill\break\\ \hline
-	Модель радиальной трещины&Точечный перфорированный интервал; бесконечный по всем направлениям однородный пласт&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/radial_model_new.jpg}}\hfill\break\\ \hline
-	Христиано- вича- Желтова- Гиртсма- деКлерка (модель KGD)&Высота трещины много больше её длины; вертикальное сечение трещины прямоугольно; в горизонтальной плоскости выполняется условие плоской деформации&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/kgd_scheme_better.jpg}}\hfill\break\\ \hline
+	Full3D&Отсутствуют; учёт большого количества физических эффектов позволяет очень точно (часто излишне точно) описать распространение трещины\break\hfill\break (рисунок заимствован из \cite{baykin_course}) &\hfill\break\makecell[c]{\includegraphics[width=0.6\linewidth]{images/full3D_scheme_better.jpg}}\hfill\break\\ \hline
+	Planar3D&Одна планарная трещина, распространяющаяся в плоскости вдоль направления максимальных горизонтальных напряжений; законы упругости рассматриваются в рамках линейно-упругой механики разрушения в общем случае без дополнительных упрощений; поток жидкости вдоль трещины двумерный\break\hfill\break (рисунок заимствован из \cite{valov_baykin_dontsov})&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/planar3D_model_new.jpg}\\\includegraphics[width=\linewidth]{images/planar3D_tip_model_new.jpg}}\hfill\break\\ \hline
+	Pseudo3D&Длина трещины $l(t)$ много больше её высоты $h(x,t)$; высота трещины изменяется как по координате $x$, так и со временем $t$; в каждом вертикальном сечении давление одинаково по сечению (из этого условия следует одномерность течения жидкости в трещине)\break\hfill\break (рисунок заимствован из \cite{baykin_course, dontsov_peirce})&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/pseudo3D_model_new.jpg}}\hfill\break\\ \hline
+	Перкинса- Керна- Нордгрена (модель PKN или модель трещины постоянной высоты)&Длина трещины много больше её фиксированной высоты $H$; в каждом вертикальном сечении давление одинаково по сечению (из этого условия следует эллиптичность вертикального сечения трещины и одномерность течения жидкости в трещине)\break\hfill\break (рисунок заимствован из \cite{adachi})&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/pkn_model_new.jpg}}\hfill\break\\ \hline
+	Модель радиальной трещины&Точечный перфорированный интервал; бесконечный по всем направлениям однородный пласт\break\hfill\break (рисунок заимствован из \cite{adachi})&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/radial_model_new.jpg}}\hfill\break\\ \hline
+	Христиано- вича- Желтова- Гиртсма- деКлерка (модель KGD)&Высота трещины много больше её длины; вертикальное сечение трещины прямоугольно; в горизонтальной плоскости выполняется условие плоской деформации\break\hfill\break (рисунок заимствован из \cite{adachi})&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/kgd_scheme_better.jpg}}\hfill\break\\ \hline
 	
 \end{longtable}
 \normalsize% возвращаем шрифт к нормальному
@@ -96,7 +96,7 @@
 		\includegraphics[width=.95\linewidth,valign=t]{images/kgd_model_A-A_plane.jpg}
 	\end{subfigure}
 \captionsetup{justification=centering} %центрировать
-\caption{Геометрия трещины KGD: {\itshape a} --- в 3D; {\itshape b} --- проекция A-A} 
+\caption{Геометрия трещины KGD \cite{esipov}: {\itshape a} --- в 3D; {\itshape b} --- проекция A-A} 
 \label{fig:kgd-model}
 \end{figure}
 
@@ -171,9 +171,9 @@ p(x,t)=\sigma_0-\frac{E'}{4\pi}\int\limits_{-l}^{l}{\frac{w(s)ds}{(x-s)^2}},
 
 \textbf{Условие распространения.}
 
-Условие распространения трещины KGD в рамках линейно-упругой механики разрушения (ЛУМР) \cite{rice} можно представить в виде:
+Условие распространения трещины KGD в рамках линейно-упругой механики разрушения (ЛУМР) \cite{rice, cherepanov} можно представить в виде:
 \beq
-\lim_{x\to l}\frac{w}{(l-x)^{1/2}}=
+\lim_{x\to L}\frac{w}{(L-x)^{1/2}}=
 \begin{cases}
 \dfrac{K'_{Ic}}{E'},\text{ если }v>0\\[15pt]
 \dfrac{K_I'}{E'},\text{ если }v=0
@@ -219,21 +219,42 @@ p(x,t)=\sigma_0-\dfrac{E'}{4\pi}\displaystyle\int\limits_{-L(t)}^{L(t)}\dfrac{w(
 		\includegraphics[width=.95\linewidth,valign=t]{images/radial_model_A-A_plane.jpg}
 	\end{subfigure}
 \captionsetup{justification=centering} %центрировать
-\caption{Геометрия радиальной трещины: {\itshape a} --- в 3D; {\itshape b} --- проекция A-A} 
+\caption{Геометрия радиальной трещины \cite{esipov}: {\itshape a} --- в 3D; {\itshape b} --- проекция A-A} 
 \label{fig:radial-model}
 \end{figure}
 
 
-Система уравнений модели радиальной трещины запишется в следующем виде:
+Модель радиальной трещины реализуется в случае точечного перфорированного интервала и бесконечного по всем направлениям однородного пласта.
+Система уравнений модели радиальной трещины запишется в цилиндрической системе координат в следующем виде:
 \beq
 \begin{cases}
 \dfrac{\partial w}{\partial t}+\dfrac{1}{r}\dfrac{\partial}{\partial r}\left(rq\right)+\dfrac{C'}{\sqrt{t-t_0(r)}}=Q_0\delta(r),\\[15pt]
-q=-\dfrac{w^3}{\mu'}\dfrac{\partial p_n}{\partial r},\\[5pt]
-p_{net}(r,t)=-\dfrac{E'}{2\pi R}\displaystyle\int\limits_{0}^{R(t)}M\left(\dfrac{r}{R},\dfrac{r'}{R}\right)\dfrac{\partial w(r',t)}{\partial r'}dr',\\[20pt]
+q=-\dfrac{w^3}{\mu'}\dfrac{\partial p_{net}}{\partial r},\\[5pt]
+p_{net}(r,t)=-\dfrac{E'}{2\pi R}\displaystyle\int\limits_{0}^{R(t)}\!M\left(\dfrac{r}{R},\dfrac{r'}{R}\right)\dfrac{\partial w(r',t)}{\partial r'}dr',\\[20pt]
 \displaystyle\lim_{r\to R}\dfrac{w}{(R-r)^{1/2}}=\dfrac{K'}{E'},
 \end{cases}
 \eeq
-где $C'=2C_l$, $\,\,\,\mu'=12\mu$, $\,\,\,E'=\dfrac{E}{1-\nu^2}$, $\,\,\,K'=\dfrac{8K_{Ic}}{\sqrt{2\pi}}$.
+где $C'=2C_l$ -- масштабированный коэффициент одномерных утечек Картера,\newline
+%\vspace*{1mm}
+$\mu'=12\mu$ -- масштабированная вязкость жидкости,\newline
+%\vspace*{1mm}
+$E'=\dfrac{E}{1-\nu^2}$ -- модуль плоской деформации породы,\newline
+%\vspace*{1mm}
+$K'=\dfrac{8K_{Ic}}{\sqrt{2\pi}}$ -- масштабированная трещиностойкость породы.\\
+
+Ядро подынтегрального выражения равно
+\beq
+M\!\left(\rho,s\right)=
+\begin{cases}
+\dfrac{1}{\rho}K\!\left(\dfrac{s^2}{\rho^2}\right)+\dfrac{\rho}{s^2-\rho^2}E\!\left(\dfrac{s^2}{\rho^2}\right),\,\,\rho>s,\\[15pt]
+\dfrac{s}{s^2-\rho^2}E\!\left(\dfrac{\rho^2}{s^2}\right),\,\,\rho<s,
+\end{cases}
+\eeq
+где
+$$K(m)=\int\limits_{0}^{\pi/2}{\dfrac{d\varphi}{\sqrt{1-m^2\sin^2{\varphi}}}}$$
+и
+$$E(m)=\int\limits_{0}^{\pi/2}{\sqrt{1-m^2\sin^2{\varphi}}d\varphi}$$
+полные эллиптические интегралы первого и второго рода соответственно.
 \\
 
 Приближённые решения для модели радиальной трещины представлены в работе \cite{dontsov2}.
@@ -255,7 +276,7 @@ p_{net}(r,t)=-\dfrac{E'}{2\pi R}\displaystyle\int\limits_{0}^{R(t)}M\left(\dfrac
 		\includegraphics[width=.95\linewidth,valign=t]{images/pkn_model_A-A_plane.jpg}
 	\end{subfigure}
 \captionsetup{justification=centering} %центрировать
-\caption{Геометрия трещины PKN: {\itshape a} --- в 3D; {\itshape b} --- проекция A-A} 
+\caption{Геометрия трещины PKN \cite{esipov}: {\itshape a} --- в 3D; {\itshape b} --- проекция A-A} 
 \label{fig:pkn-model}
 \end{figure}
 
@@ -279,12 +300,12 @@ w(x,z)=\frac{4}{\pi}\bar{w}(x)\sqrt{1-\left(\frac{2z}{H}\right)^2}.
 \beq
 \begin{cases}
 \dfrac{\partial\bar{w}}{\partial t}+\dfrac{\partial\bar{q}_x}{\partial x}+\dfrac{C'}{\sqrt{t-t_0(x)}}=\dfrac{Q_0}{H}\delta(x),\\[15pt]
-\bar{q}_x=-\dfrac{\bar{w}^3}{\pi^2\mu}\dfrac{\partial p}{\partial x},\\[15pt]
+\bar{q}_x=-\dfrac{\bar{w}^3}{\pi^2\mu}\dfrac{\partial p_{net}}{\partial x},\\[15pt]
 p_{net}(x,t)=\dfrac{2E'}{\pi^2H}\displaystyle\int\limits_{-L(t)}^{L(t)}\bar{w}(x',t)\dfrac{dG(2(x'-x)/H)}{dx'}dx',\\[22pt]
 \displaystyle\lim_{x\to L}\dfrac{w}{(L-x)^{1/2}}=\dfrac{K'}{E'},
 \end{cases}
 \eeq
-где $C'=2C_l$, $\,\,\,\mu'=12\mu$, $\,\,\,E'=\dfrac{E}{1-\nu^2}$, $\,\,\,K'=\dfrac{8K_{Ic}}{\sqrt{2\pi}}$.
+где $C'=2C_l$, $\,\,\,\mu'=12\mu$, $\,\,\,E'=\dfrac{E}{1-\nu^2}$, $\,\,\,K'=\dfrac{8K_{Ic}}{\sqrt{2\pi}}$, $\displaystyle{}\,\,\,G(s)=\frac{\sqrt{1+s^2}}{s}E\left(\frac{1}{1+s^2}\right)$, $\displaystyle{}E(m)=\int\limits_{0}^{\pi/2}{\sqrt{1-m^2\sin^2{\varphi}}d\varphi}$.
 \\
 
 Приближённые решения для модели трещины PKN представлены в работе \cite{dontsov2021analysis}.
