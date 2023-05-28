@@ -1,10 +1,227 @@
 \chapter{Код для моделирования роста трещин автоГРП в длину}\label{appendix-fractures-growth-modelling}
+\vspace*{-10mm}
+
+Код работает только в качестве продолжения кода из приложения \ref{appendix-rates-at-fractures}.
+Актуальная версия кода размещена в GitHub-репозитории: \url{https://github.com/mualal/hydrofracturing/blob/master/notebooks/03_fractures_growth_with_Koning_derivative.ipynb}.
 
 \begin{pythoncode}
 # формула Кёнинга
-def koning_formula():
-    kappa = k_e / (phi_e * K * c_t)
-    x_frac = Q * K * ((S.Pi * kappa * t)**(1/2)) / \
-        (2 * S.Pi * k_e * h * (p_frac_net + sigma_min - p_e))
+def koning_formula(leak_off_type='Carter'):
+    if leak_off_type == 'Carter':
+        kappa = k_e / (phi_e * K * c_t)
+        x_frac = Q * K * ((S.Pi * kappa * t)**(1/2)) / \
+            (2 * S.Pi * k_e * h * (p_frac_net + sigma_min - p_e))
+    else:
+        e_num = 2.718281828459045235
+        kappa = k_e / (phi_e * K * c_t)
+        under_exp = -2 * S.Pi * k_e * h * \
+            (p_frac_net + sigma_min - p_e) / (Q * K)
+        x_frac = 3 * (e_num)**(under_exp) * (kappa * t)**(1/2)
     return x_frac
+
+# полная производная по времени формулы Кёнинга
+def koning_formula_derivative(leak_off_type='Carter'):
+    if leak_off_type == 'Carter':
+        kappa = k_e / (phi_e * K * c_t)
+        dx_frac = K * ((S.Pi * kappa * t)**(1/2)) * dQ / \
+            (2 * S.Pi * k_e * h * (p_frac_net + sigma_min - p_e)) + \
+            Q * K * ((S.Pi * kappa / t)**(1/2)) * dt / \
+                (4 * S.Pi * k_e * h * (p_frac_net + sigma_min - p_e)) - \
+            Q * K * ((S.Pi * kappa * t)**(1/2)) * dp_f / \
+                (2 * S.Pi * k_e * h * (p_frac_net + sigma_min - p_e)**2)
+    else:
+        e_num = 2.718281828459045235
+        under_exp = -2 * S.Pi * k_e * h * \
+            (p_frac_net + sigma_min - p_e) / (Q * K)
+        kappa = k_e / (phi_e * K * c_t)
+        dx_frac = 6 * S.Pi * k_e * h * \
+            (p_frac_net + sigma_min - p_e) * dQ / (Q**2 * K) * \
+                (e_num)**(under_exp) * (kappa * t)**(1/2) + \
+                    3/2 * (e_num)**(under_exp) * (kappa / t)**(1/2) * dt
+    return dx_frac
 \end{pythoncode}
+
+
+\begin{pythoncode}
+time_mesh = np.concatenate([np.array([0.1]), np.arange(1, 670000, 7000)])
+for i, val in enumerate(time_mesh[1:]):
+    time_mesh[i+1] += time_mesh[i]
+#time_mesh = time_mesh[:30]
+#time_mesh = np.arange(0.1,10.5,0.1)
+plt.plot(time_mesh[1:] / 86400, (time_mesh[1:]-time_mesh[:-1]) / 86400)
+plt.xlabel('Время, сут')
+plt.ylabel('Шаг, сут')
+plt.title(f'Количество шагов по времени: {len(time_mesh)}')
+#time_mesh
+\end{pythoncode}
+
+
+\begin{pythoncode}
+leak_off_regime = '2D'
+
+diam_start = 800 / 86400  #0.02
+diam_end = 400 / 86400  #0.005
+
+display_output = False
+
+for_koning_values = {}
+
+for_koning_values[t] = time_mesh[0]
+for_koning_values[dt] = time_mesh[1] - time_mesh[0]
+
+# список забойных давлений
+p_0_values = []
+# список чистых давлений в трещинах
+p_net_values = []
+# список дебитов на трещинах
+Q_values = []
+# список полудлин трещин
+x_frac_values = []  # через приращение
+x_frac_values_via_formula = []  # просто по формуле
+# список минимальных чистых давлений в трещине для её распространения
+p_net_prop_values = []
+
+for t_ind, t_value in enumerate(tqdm(time_mesh[:-1])):
+
+    parameter_values[Q_0] = diam_start + (diam_end-diam_start) * \
+        (t_value-time_mesh[0])/(time_mesh[-1]-time_mesh[0])
+    
+    #if t_value >= 70 * 86400:
+        #parameter_values[C_d[1]] = 0.6
+        #parameter_values[d_p[1]] = 0.01
+    
+    #if t_value >= 140 * 86400:
+        #parameter_values[C_d[2]] = 0.7
+        #parameter_values[d_p[2]] = 0.01
+    
+    #if t_value >= 210 * 86400:
+    #    parameter_values[C_d[3]] = 0.8
+
+    if t_value > time_mesh[0]:
+        solution_values_last = solution_values.copy()
+
+    solution_values, _ = kirchhoff_solver(parameter_values)
+
+    p_0_value = solution_values.get(p_0)
+    p_0_values.append(p_0_value)
+
+    Q_value = [solution_values[symbols('Q'+str(i), real=True)]
+               for i in range(1, fracs_count+1)]
+    Q_values.append(Q_value)
+    
+    p_net_value = [N(i.subs({**parameter_values, **solution_values}))
+                   for i in p_net_with_leak_off()]
+    p_net_values.append(p_net_value)
+
+    for i in range(fracs_count):
+        for_koning_values[p_frac_net[i]] = p_net_value[i]
+    
+    p_net_prop = K_c / (S.Pi * x_f)**(1/2)
+    p_net_prop_value = [N(i.subs({**parameter_values}))
+                        for i in p_net_prop]
+    p_net_prop_values.append(p_net_prop_value)
+    
+    if t_value == time_mesh[0]:
+        x_frac = [N(i.subs({**parameter_values, **solution_values,
+                            **for_koning_values}))
+                            for i in koning_formula(
+                                leak_off_type=leak_off_regime)]
+    else:
+        for i in range(fracs_count):
+            for_koning_values[dQ[i]] = Q_values[-1][i] - Q_values[-2][i]
+            for_koning_values[dp_f[i]] = p_net_values[-1][i] - \
+                p_net_values[-2][i]
+        dx_frac = [N(i.subs({**parameter_values, **solution_values,
+                             **for_koning_values}))
+                             for i in koning_formula_derivative(
+                                 leak_off_type=leak_off_regime)]
+        #dx_frac = [el if el >= 0 else 0 for el in dx_frac]
+        #for i in range(fracs_count):
+        #    if for_koning_values[p_frac_net[i]] < p_net_prop_values[-1][i]:
+        #        dx_frac[i] = 0
+        x_frac = np.array(x_frac_values[-1]) + np.array(dx_frac)
+    x_frac_values.append(x_frac)
+
+    x_frac_values_via_formula.append(np.array(
+        [N(i.subs({**parameter_values,
+                   **solution_values,
+                   **for_koning_values})
+           ) for i in koning_formula(leak_off_type=leak_off_regime)]))
+
+    #print(x_frac)
+
+    for i in range(fracs_count):
+        parameter_values[x_f[i]] = x_frac[i]
+    
+    #print(p_net_prop_value)
+    #print(p_net_value)
+    for_koning_values[t] = time_mesh[t_ind+1]
+    for_koning_values[dt] = time_mesh[t_ind+1] - time_mesh[t_ind]
+    
+
+    #if for_koning_values[t] >= 100:
+    #    parameter_values[d_p[1]] = 0.005
+
+    if display_output:
+        print(x_frac, 'метров')
+        print(for_koning_values[t], ' сек')
+\end{pythoncode}
+
+
+\begin{pythoncode}
+fig, axs = plt.subplots(2, 2, figsize=(10,10))
+
+axs[0,0].plot(time_mesh[:-1] / 86400, x_frac_values,
+              label=[f'Трещина №{i+1}' for i in range(fracs_count)])
+axs[0,0].plot(time_mesh[:-1] / 86400, x_frac_values_via_formula,
+              linestyle='--', label=[f'Трещина №{i+1}'
+                                     for i in range(fracs_count)])
+axs[0,0].set_xlabel('Время, сут')
+axs[0,0].set_ylabel('Полудлина трещины, м')
+axs[0,0].set_title('Зависимость полудлины трещин \n от времени',
+                   weight='bold',size=15)
+axs[0,0].legend()
+axs[0,0].minorticks_on()
+axs[0,0].grid(which='minor', linestyle='--', linewidth=0.5)
+
+axs[0,1].plot(time_mesh[:-1]/86400, np.array(p_0_values)/1e6)
+axs[0,1].set_xlabel('Время, сут')
+axs[0,1].set_ylabel('Забойное давление, МПа')
+axs[0,1].set_title('Зависимость забойного давления \n от времени',
+                   weight='bold',size=15)
+axs[0,1].minorticks_on()
+axs[0,1].grid(which='minor', linestyle='--', linewidth=0.5)
+
+axs[1,0].plot(time_mesh[:-1]/86400, np.array(Q_values)*86400,
+              label=[f'Трещина №{i+1}' for i in range(fracs_count)])
+axs[1,0].set_ylim([0.4*min(np.array(Q_values).flatten())*86400,
+                   1.1*max(np.array(Q_values).flatten())*86400])
+axs[1,0].set_xlabel('Время, сут')
+axs[1,0].set_ylabel('Расход на трещине, м^3/сут')
+axs[1,0].set_title('Зависимость расхода на трещинах \n от времени',
+                   weight='bold',size=15)
+axs[1,0].legend()
+axs[1,0].minorticks_on()
+axs[1,0].grid(which='minor', linestyle='--', linewidth=0.5)
+
+plt.rc('legend', fontsize=10)
+
+axs[1,1].plot(time_mesh[:-1]/86400, np.array(p_net_values)/1e6,
+              label=[f'Трещина №{i+1}' for i in range(fracs_count)])
+axs[1,1].plot(time_mesh[:-1]/86400, np.array(p_net_prop_values)/1e6,
+              linestyle='--',
+              label=[f'Усл. распр. на трещине №{i+1}'
+                     for i in range(fracs_count)])
+axs[1,1].set_xlabel('Время, сут')
+axs[1,1].set_ylabel('Чистое давление на трещине, МПа')
+axs[1,1].set_title('Зависимость чистого давления на трещинах \n от времени',
+                   weight='bold',size=15)
+axs[1,1].legend(loc="lower right")
+axs[1,1].minorticks_on()
+axs[1,1].grid(which='minor', linestyle='--', linewidth=0.5)
+
+fig.tight_layout()
+fig.savefig('myimage.jpg', dpi=300)
+\end{pythoncode}
+
+
