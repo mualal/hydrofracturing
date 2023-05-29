@@ -1,6 +1,6 @@
 ## Гидроразрыв пласта
 
-Данный репозиторий создан на основе курса лекций "Гидроразрыв пласта" (https://www.youtube.com/playlist?list=PLipUmK_65GXEpFTHhfJBaiiv7XiwMg-PM), который читается на магистерской программе "Нефтяной инжиниринг и математическое моделирование" в Новосибирском государственном университете (https://education.nsu.ru/petroleum/).
+Данный репозиторий создан на основе курса лекций "Гидроразрыв пласта" ([https://www.youtube.com/playlist?list=PLipUmK_65GXEpFTHhfJBaiiv7XiwMg-PM](https://www.youtube.com/playlist?list=PLipUmK_65GXEpFTHhfJBaiiv7XiwMg-PM)), который читается на магистерской программе "Нефтяной инжиниринг и математическое моделирование" в Новосибирском государственном университете ([https://education.nsu.ru/petroleum/](https://education.nsu.ru/petroleum/)).
 
 Авторы курса лекций: Алексей Николаевич Байкин, Александр Викторович Валов и Егор Владимирович Донцов.
 
