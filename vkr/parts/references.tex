@@ -6,16 +6,22 @@
 \addcontentsline{toc}{chapter}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
 \nocite{*}
 
-\begingroup
-\let\itshape\upshape
 
 \emph{Книжные издания.}
 \vspace*{-3mm}
+\begingroup
+\let\itshape\upshape
 \printbibliography[env=SSTfirst, keyword={book}]
-\emph{Статьи.}
+\endgroup
+\emph{Статьи и разделы из сериальных изданий.}
 \vspace*{-3mm}
+\begingroup
+\let\itshape\upshape
 \printbibliography[env=SSTfirst, notkeyword={book}, notkeyword ={url_address}]
+\endgroup
 \emph{Другие источники.}
 \vspace*{-3mm}
+\begingroup
+\let\itshape\upshape
 \printbibliography[env=SSTfirst, keyword={url_address}]
 \endgroup
