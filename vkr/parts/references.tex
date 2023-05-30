@@ -3,6 +3,19 @@
 \ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=false}}{}
 \chapter*{Список использованных источников}	
 \label{references}
-\addcontentsline{toc}{chapter}{Список использованных источников}
+\addcontentsline{toc}{chapter}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
 \nocite{*}
-\printbibliography[env=SSTfirst]
+
+\begingroup
+\let\itshape\upshape
+
+\emph{Книжные издания.}
+\vspace*{-3mm}
+\printbibliography[env=SSTfirst, keyword={book}]
+\emph{Статьи.}
+\vspace*{-3mm}
+\printbibliography[env=SSTfirst, notkeyword={book}, notkeyword ={url_address}]
+\emph{Другие источники.}
+\vspace*{-3mm}
+\printbibliography[env=SSTfirst, keyword={url_address}]
+\endgroup

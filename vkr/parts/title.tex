@@ -30,14 +30,15 @@
 
 
 \vspace{0pt plus1fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
-\vspace*{7mm}
+\vspace*{5mm}
 
 \noindent
 \begin{minipage}{\linewidth}
 	\vspace{\mfloatsep} % интервал 
 	\begin{tabularx}{\linewidth}{Xl}
 	&Работа допущена к защите     \\
-	&\HeadTitle     \\			
+	&\HeadTitle,     \\		
+	&д.ф.-м.н., чл.-корр. РАН \\	
 	&\underline{\hspace*{0.1\textheight}} \Head     \\
 	&<<\underline{\hspace*{0.05\textheight}}>> \underline{\hspace*{0.1\textheight}} \thesisYear~г.  \\ 
 	\end{tabularx}
@@ -51,8 +52,9 @@
 {\centering%
 	
 	\MakeUppercase{\bfseries{}\DocType} \\
-	\vspace*{1mm} 
-	\MakeUppercase{\thesisDegree}
+	%\vspace*{1mm} 
+	%\MakeUppercase{\thesisDegree}
+	\thesisDegree
 	\vspace*{1mm}%
 
 
@@ -64,19 +66,21 @@
 
 %\intervalS% %ОБЯЗАТЕЛЬНО ДОБАВИТЬ ОТСТУП, ЕСЛИ ХВАТАЕТ МЕСТА
 %по специальности % для специалистов
-\vspace*{-2mm}
+\vspace*{-1mm}
 \begin{center}
-\noindent	по направлению подготовки \thesisSpecialtyCodeAndTitle{}\\% для бакалавров и магистров 
+\noindent	по направлению подготовки \\
+\noindent \thesisSpecialtyCodeAndTitle{}\\% для бакалавров и магистров 
 %\noindent Направленность  % для специалистов
-\vspace*{2mm}
-\noindent	Направленность (профиль)	\thesisOPCodeAndTitle % для бакалавров и магистров
+\vspace*{3mm}
+\noindent	Направленность (профиль) \\
+\noindent \thesisOPCodeAndTitle % для бакалавров и магистров
 % Лучше по~профилю, но что делать, так составили Положение
 \end{center}
 \par%
 
 
 \vspace{4mm plus2fill}%
-\vspace*{3.5mm}
+\vspace*{0.5mm}
 
 \noindent
 \begin{tabularx}{0.98\linewidth}{lXl}
@@ -97,7 +101,6 @@
 
 %
 \vspace{0pt plus4fill}% 
-\vspace*{4mm}
 
 \ \\
 \begin{center}%
