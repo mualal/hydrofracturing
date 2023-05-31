@@ -13,7 +13,7 @@
 
 Каждая из моделей Pseudo3D, Planar3D и Full3D плохо поддаётся аналитическому анализу.
 Однако при введении дополнительных предположений и допущений модель Planar3D преобразуется в хорошо известные модели (исторически были изучены раньше модели Planar3D), для которых можно провести аналитический анализ (найти длину, раскрытие и давление в трещине в зависимости от координаты и времени).
-В \taref{tab:fracking_models} представлены основные модели трещины ГРП с их допущениями (использованы схематичные рисунки, заимствованные из работ \cite{valov_baykin_dontsov, baykin_course, adachi, dontsov_peirce}).
+В \taref{tab:fracking_models} представлены основные модели трещины ГРП с их допущениями (использованы схематичные рисунки, заимствованные из работ \cite{adachi, dontsov_peirce, valov_baykin_dontsov, baykin_course}).
 
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
 \noindent % for correct centering
@@ -35,9 +35,9 @@
 	\endfoot
 	\hline
 	\endlastfoot
-	Full3D\footnotetext{Схематичные рисунки заимствованы из работ Алексея Николаевича Байкина, Александра Викторовича Валова, Егора Владимировича Донцова \cite{baykin_course, valov_baykin_dontsov, dontsov_peirce} и J.Adachi et al. \cite{adachi}}&Отсутствуют; учёт большого количества физических эффектов позволяет очень точно (часто излишне точно) описать распространение трещины\break\hfill\break (рисунок заимствован из \cite{baykin_course}) &\hfill\break\makecell[c]{\includegraphics[width=0.6\linewidth]{images/full3D_scheme_better.jpg}}\hfill\break\\ \hline
+	Full3D\footnotetext{Схематичные рисунки заимствованы из работ Алексея Николаевича Байкина, Александра Викторовича Валова, Егора Владимировича Донцова \cite{dontsov_peirce, valov_baykin_dontsov, baykin_course} и J.Adachi et al. \cite{adachi}}&Отсутствуют; учёт большого количества физических эффектов позволяет очень точно (часто излишне точно) описать распространение трещины\break\hfill\break (рисунок заимствован из \cite{baykin_course}) &\hfill\break\makecell[c]{\includegraphics[width=0.6\linewidth]{images/full3D_scheme_better.jpg}}\hfill\break\\ \hline
 	Planar3D&Одна планарная трещина, распространяющаяся в плоскости вдоль направления максимальных горизонтальных напряжений; законы упругости рассматриваются в рамках линейно-упругой механики разрушения в общем случае без дополнительных упрощений; поток жидкости вдоль трещины двумерный\break\hfill\break (рисунок заимствован из \cite{valov_baykin_dontsov})&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/planar3D_model_new.jpg}\\\includegraphics[width=\linewidth]{images/planar3D_tip_model_new.jpg}}\hfill\break\\ \hline
-	Pseudo3D&Длина трещины $l(t)$ много больше её высоты $h(x,t)$; высота трещины изменяется как по координате $x$, так и со временем $t$; в каждом вертикальном сечении давление одинаково по сечению (из этого условия следует одномерность течения жидкости в трещине)\break\hfill\break (рисунок заимствован из \cite{baykin_course, dontsov_peirce})&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/pseudo3D_model_new.jpg}}\hfill\break\\ \hline
+	Pseudo3D&Длина трещины $l(t)$ много больше её высоты $h(x,t)$; высота трещины изменяется как по координате $x$, так и со временем $t$; в каждом вертикальном сечении давление одинаково по сечению (из этого условия следует одномерность течения жидкости в трещине)\break\hfill\break (рисунок заимствован из \cite{dontsov_peirce,baykin_course})&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/pseudo3D_model_new.jpg}}\hfill\break\\ \hline
 	Перкинса- Керна- Нордгрена (модель PKN или модель трещины постоянной высоты)&Длина трещины много больше её фиксированной высоты $H$; в каждом вертикальном сечении давление одинаково по сечению (из этого условия следует эллиптичность вертикального сечения трещины и одномерность течения жидкости в трещине)\break\hfill\break (рисунок заимствован из \cite{adachi})&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/pkn_model_new.jpg}}\hfill\break\\ \hline
 	Модель радиальной трещины (или модель трещины в форме копейки)&Точечный или очень короткий перфорированный интервал; бесконечный по всем направлениям однородный пласт; максимальная высота трещины равна её длине\break\hfill\break (рисунок заимствован из \cite{adachi})&\hfill\break\makecell[c]{\includegraphics[width=.5\linewidth]{images/radial_model_new_vertical.jpg}}\hfill\break\\ \hline
 	Христиано- вича- Желтова- Гиртсма- деКлерка (модель KGD)&Высота трещины много больше её длины; вертикальное сечение трещины прямоугольно; в горизонтальной плоскости выполняется условие плоской деформации\break\hfill\break (рисунок заимствован из \cite{adachi})&\hfill\break\makecell[c]{\includegraphics[width=\linewidth]{images/kgd_scheme_better.jpg}}\hfill\break\\ \hline
@@ -173,7 +173,7 @@ p(x,t)=\sigma_0-\frac{E'}{4\pi}\int\limits_{-l}^{l}{\frac{w(s)ds}{(x-s)^2}},
 
 \textbf{Условие распространения.}
 
-Условие распространения трещины KGD в рамках линейно-упругой механики разрушения (ЛУМР) \cite{rice, cherepanov} можно представить в виде:
+Условие распространения трещины KGD в рамках линейно-упругой механики разрушения (ЛУМР) \cite{cherepanov,rice} можно представить в виде:
 \beq
 \lim_{x\to L}\frac{w}{(L-x)^{1/2}}=
 \begin{cases}
