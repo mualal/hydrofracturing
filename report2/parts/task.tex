@@ -1,0 +1,76 @@
+%%%% Начало оформления заголовка - оставить без изменений !!! %%%%
+\input{settings/task_settings}	% настройки - начало 
+	
+				{%\normalfont %2020
+						\MakeUppercase{\SPbPU}}\\
+				\institute\\
+				Высшая школа теоретической механики и математической физики
+
+\par}\intervalS% завершает input
+
+				\noindent
+				\begin{minipage}{\linewidth}
+				\vspace{\mfloatsep} % интервал 	
+				\begin{tabularx}{\linewidth}{Xl}
+					&УТВЕРЖДАЮ      \\
+					&\HeadTitle     \\			
+					&\underline{\hspace*{0.1\textheight}} \Head     \\
+					&<<\underline{\hspace*{0.05\textheight}}>> \underline{\hspace*{0.1\textheight}} \thesisYear г.  \\  
+				\end{tabularx}
+				\vspace{\mfloatsep} % интервал 	
+				\end{minipage}
+
+\vspace{0.5\curtextsize}{\centering\bfseries%
+
+				ЗАДАНИЕ\\
+				на выполнение %с 2020 года 
+				%по выполнению % до 2020 года
+				выпускной квалификационной работы
+\par}
+\vspace{0.5\curtextsize}{\centering\normalfont%
+
+				студенту \uline{\AuthorFullDat{}, гр.~\group}
+
+
+\par}\vspace{\curtextsize}%
+%%%%
+%%%% Конец оформления заголовка  %%%%
+ 	
+	
+	
+\begin{enumerate}[1.]
+	\item Тема работы: {\expandafter \ulined \thesisTitle.}
+	%\item Тема работы (на английском языке): \uline{\thesisTitleEn.} % вероятно после 2021 года
+	\item Срок сдачи студентом законченной работы: \uline{\thesisDeadline.} 
+	\item Исходные данные по работе: \uline{справочная литература и актуальные публикации по теме исследования; физико-механические свойства пласта и закачиваемой в пласт жидкости; геометрические параметры скважины; характеристики перфораций.}%
+	%\printbibliographyTask % печать списка источников % КОММЕНТИРУЕМ ЕСЛИ НЕ ИСПОЛЬЗУЕТСЯ
+	% В СЛУЧАЕ, ЕСЛИ НЕ ИСПОЛЬЗУЕТСЯ МОЖНО ТАКЖЕ ЗАЙТИ В setup.tex и закомментировать \vspace{-0.28\curtextsize}
+	\item Содержание работы (перечень подлежащих разработке вопросов): \uline{обзор математических моделей трещин гидроразрыва; создание модели роста нескольких трещин автоГРП; исследование влияния входных параметров на рост трещин; создание модели перераспределения потоков между трещинами.}
+	\item Перечень графического материала (с указанием обязательных чертежей): \uline{не предусмотрено.}
+		\item Консультанты по работе: \uline{Базыров Ильдар Шамилевич, руководитель направления ГДМ <<Газпромнефть-НТЦ>>, к.т.н.}
+		\item Дата выдачи задания: \uline{\thesisStartDate.}
+\end{enumerate}
+
+\intervalS%можно удалить пробел
+
+Руководитель ВКР \uline{\hspace*{0.09\textheight} \Supervisor, доцент ВШТМиМФ, ФизМех, к.т.н.}
+
+
+%\intervalS%можно удалить пробел
+
+%Консультант\footnote{В случае, если есть консультант, отличный от консультанта по нормоконтролю.}  \uline{\hspace*{0.1\textheight}\ConsultantExtra}
+
+
+\vspace{0.8\curtextsize}%можно удалить пробел
+
+%Консультант по нормоконтролю \uline{\hspace*{0.1\textheight} \ConsultantNorm}%ПОКА НЕ ТРЕБУЕТСЯ, Т.К. ОН У ВСЕХ ПО УМОЛЧАНИЮ
+
+Задание принял к исполнению \uline{\thesisStartDate}
+
+\vspace{0.7\curtextsize}%можно удалить пробел
+
+Студент \uline{\hspace*{0.175\textheight} \Author}
+
+
+
+\input{settings/task_settings_restore}	% настройки - конец
