@@ -10,6 +10,8 @@
 
 \usepackage[english, russian]{babel}
 \usepackage[absolute,overlay]{textpos}
+\usepackage{graphicx}
+\usepackage{adjustbox}
 
 \usefonttheme{professionalfonts}
 \usepackage{fontspec}
@@ -61,11 +63,11 @@
 \end{itemize}
 \end{textblock*}
 
-\begin{textblock*}{4.5cm}(1.5cm,6.7cm)
+\begin{textblock*}{4.5cm}(1.5cm,6.5cm)
 \includegraphics[width=4.5cm]{hydraulic_fracturing_abstract_image1.jpeg}
 \end{textblock*}
 
-\begin{textblock*}{4cm}(7.7cm,6.3cm)
+\begin{textblock*}{4cm}(7.7cm,6.1cm)
 \includegraphics[width=3cm]{hydraulic_fracturing_abstract_image2.jpg}
 \end{textblock*}
 
@@ -95,7 +97,7 @@
 \begin{frame}
 \frametitle{Основные компоненты полной модели трещины ГРП}
 
-\begin{textblock*}{8.8cm}(0.5cm,1.5cm)
+\begin{textblock*}{8.8cm}(0.5cm,1.1cm)
 \begin{enumerate}[1)]
 	\item закон сохранения жидкости (доминирование или отсутствие утечек);
 	\item уравнение течения жидкости в трещине (в зависимости от реологии жидкости);
@@ -105,20 +107,20 @@
 \end{enumerate}
 \end{textblock*}
 
-\begin{textblock*}{3cm}(9.5cm,1.5cm)
+\begin{textblock*}{3cm}(9.3cm,1.2cm)
 \includegraphics[width=3cm]{part1_balance.jpg}
 \end{textblock*}
 
-\begin{textblock*}{4cm}(0.5cm,6cm)
+\begin{textblock*}{4cm}(0.7cm,5.2cm)
 \includegraphics[width=4cm]{part2_flux.jpg}
 \end{textblock*}
 
-\begin{textblock*}{3.5cm}(8.5cm,3.7cm)
+\begin{textblock*}{3.5cm}(8.5cm,3.2cm)
 \includegraphics[width=3.5cm]{part3_elasticity.jpg}
 \end{textblock*}
 
 
-\begin{textblock*}{3cm}(5.5cm,5.3cm)
+\begin{textblock*}{3cm}(5.5cm,4.5cm)
 \tiny
 $$
 w=\sqrt{\frac{32}{\pi}}\frac{K_{I}\left(1-\nu^2\right)}{E}\sqrt{r}
@@ -126,18 +128,24 @@ $$
 \normalsize
 \end{textblock*}
 
-\begin{textblock*}{7.5cm}(5cm,6.5cm)
+\begin{textblock*}{7.5cm}(5cm,5.8cm)
 \includegraphics[width=7.5cm]{part4_propagation.jpg}
 \end{textblock*}
 
-\begin{textblock*}{6cm}(0.5cm,8.9cm)
+\begin{textblock*}{6cm}(0.5cm,8.5cm)
+\tiny
+\textcolor{lit_gray}{A.V. Valov, A.N. Baykin, E.V. Dontsov.  Modeling geometry of planar hydraulic fractures using the Planar 3D ILSA approach}
+
+\end{textblock*}
+
+\begin{textblock*}{6cm}(7cm,8.5cm)
 \tiny
 \textcolor{lit_gray}{J.R. Rice. Mathematical analysis in the mechanics of fracture. Fracture: an advanced treatise, vol. II, pp. 191-311, 1968}
 \end{textblock*}
 
 \end{frame}
 
-
+\begin{comment}
 \begin{frame}
 \frametitle{Модель Христиановича-Желтова-Гиртсма-деКлерка (модель плоской трещины)}
 
@@ -171,7 +179,9 @@ $$
 \normalsize
 
 \end{frame}
+\end{comment}
 
+\begin{comment}
 \begin{frame}
 \frametitle{Модель радиальной трещины}
 
@@ -212,6 +222,7 @@ $$
 \normalsize
 
 \end{frame}
+\end{comment}
 
 
 \begin{frame}
@@ -270,7 +281,7 @@ $$
 
 \end{frame}
 
-
+\begin{comment}
 \begin{frame}
 \frametitle{Параметрическая карта решения модели PKN}
 
@@ -354,7 +365,7 @@ $$
 \end{textblock*}
 
 \end{frame}
-
+\end{comment}
 
 
 \begin{frame}
@@ -365,7 +376,7 @@ $$
 \includegraphics[width=10cm]{flow_distribution_scheme.jpg}
 \end{textblock*}
 
-\begin{textblock*}{4cm}(-0.5cm,7.5cm)
+\begin{textblock*}{4cm}(-0.2cm,7.5cm)
 $$\boxed{Q_0=\sum\limits_{i=1}^{N}Q_i}$$
 \end{textblock*}
 
@@ -378,49 +389,82 @@ $$\boxed{p_0=\sigma_{\text{min},i}+p_{\text{net},i}+\Delta p_{\text{perf},i}-\su
 
 \begin{frame}
 \frametitle{Чистое давление в трещинах PKN}
+
+\begin{textblock*}{11cm}(1cm,2cm)
+Чистое давление в распространяющихся трещинах PKN (условие роста трещин):
 $$
-p_{\text{net},i}(Q_i)=a_iQ_i^{\frac{n}{2n+3}}V_i^{\frac{1}{2n+3}},
-$$\\
-\small
-где $a_i=\left(\dfrac{(n+3)(2n+1)^n \cdot K\cdot (E_i')^{2n+2}}{\pi\, 2^{2n}n^n\phi^n h_i^{3n+3}}\right)^{\!\frac{1}{2n+3}}$ -- параметр жёсткости,\newline\\
-$Q_i$ и $V_i$ -- расход на $i$-ой трещине и объём $i$-ой трещины;\newline
-$K$ и $n$ -- реологические параметры степенной жидкости;\newline
-$E_i'$ -- модуль плоской деформации породы вблизи $i$-ой трещины;\newline
-$h_i=H$ -- мощность продуктивной зоны.\\\\
+p_{\text{net},i}=\sqrt{\frac{8K_{Ic,i}^2}{\pi h_{f,i}}},
+$$
+где $K_{Ic,i}$ -- трещиностойкость породы вблизи кончика $i$-ой трещины,\newline
+$h_{f,i}=H$ -- высота трещин (для PKN модели равна мощности продуктивной зоны).
+\end{textblock*}
 
-Объём $i$-ой трещины:
-$$V_i=2x_{\!f,i}(t)\cdot H\cdot \bar{w}_{\!\tilde{K}}=\frac{2x_{\!f,i}(t)\cdot \sqrt{\pi}K_{Ic}\cdot H^{3/2}}{E'_i},$$
-где $x_{\!f,i}$ -- полудлина $i$-ой трещины
-
+\begin{textblock*}{11cm}(1cm,8cm)
+\scriptsize
+\textcolor{lit_gray}{P.A. Kabanova, E.V. Shel. Modeling of Water-Induced Fracture Growth Pressure Using Poroelastic Approach. — ECMOR XVII – 17th European Conference on the Mathematics of Oil Recovery, 2020}
+\end{textblock*}
 \normalsize
+
 \end{frame}
 
 
 \begin{frame}
 \frametitle{Падение давления на перфорациях}
+\begin{textblock*}{11cm}(1cm,2cm)
 $$
 \Delta p_{\text{perf},i}=\frac{8\rho_s}{\pi^2\,C_{d,i}^2\,n_{p,i}^2 \,d_{p,i}^4}Q_i\left|Q_i\right|
 $$\\
-где $\rho_s$ -- средняя плотность смеси;\newline
+где $\rho_s$ -- плотность жидкости;\newline
 $n_{p,i}, d_{p,i}$ -- количество и диаметр перфораций;\newline\\
-$C_{d,i}=\dfrac{\text{min}(d_{jet})}{d_p}$ -- безразмерный коэффициент эрозии (в случае отсутствия твёрдых частичек в потоке $C_{d,i}\in\left[0.5,0.6\right]$, а с твёрдыми частичками в потоке $C_{d,j}\in\left[0.6,0.95\right]$  из-за эрозии перфорации).
+$C_{d,i}$ -- безразмерный коэффициент эрозии (в случае отсутствия твёрдых частичек в потоке $C_{d,i}\in\left[0.5,0.6\right]$, а с твёрдыми частичками в потоке $C_{d,j}\in\left[0.6,0.95\right]$  из-за эрозии перфорации).
+\end{textblock*}
+
+\begin{textblock*}{11cm}(1cm,7.5cm)
+\scriptsize
+\textcolor{lit_gray}{J.B. Crump, M.W. Conway. Effects of Perforation-Entry Friction on Bottomhole Treating Analysis. — Journal of Petroleum Technology, August 1988}
+\end{textblock*}
+
+\begin{textblock*}{11cm}(1cm,8.5cm)
+\scriptsize
+\textcolor{lit_gray}{G. Long, S. Liu, G. Xu, S.-W. Wong. Modeling of Perforation Erosion for Hydraulic Fracturing Applications. — SPE-174959-MS, 2015.}
+\end{textblock*}
+
+\normalsize
 
 \end{frame}
 
 
 \begin{frame}
-\frametitle{Падение давления на трение}
-\vspace*{-12mm}
+\frametitle{Падение давления на трение при ламинарном режиме течения}
+\begin{textblock*}{11cm}(1cm,2cm)
 $$
-\Delta p_{\text{fric},i}=\int\limits_{x_{i-1}}^{x_i}{f\frac{\rho u_{m,i}^2}{R_i}}=\int\limits_{x_{i-1}}^{x_i}{\frac{\rho(c(t,s))\cdot f(Re)\cdot \left(Q_0-\sum\limits_{j=1}^{i-1}{Q_j}\right)^{\!2}}{R_i(s)S_i^2(s)}}ds
+\Delta p_{\text{fric}, i}=\int\limits_{x_{i-1}}^{x_i}{\frac{8\mu\left(Q_0-\sum\limits_{j=1}^{i-1}{Q_j}\right)}{R_i^2(s)S_i(s)}}ds,
 $$\\
-\footnotesize
-где $f=\dfrac{\tau}{\rho u_{m,i}^2/2}$ -- коэффициент трения Фаннинга;\newline\\
-$\rho(c(t,s))$ -- плотность смеси, которая зависит от динамически меняющейся концентрации проппанта (в рассматриваемой задаче постоянна, так как нет проппанта);\newline\\
-$u_{m,i}=\dfrac{Q_0-\sum\limits_{j=1}^{i-1}{Q_j}}{S_i}$ -- средняя скорость на рассматриваемом участке трубы;\newline\\
-$S_i$ -- площадь сечения рассматриваемого участка трубы;\newline
-$R_i$ -- радиус рассматриваемого участка трубы;\newline
-$Re$ -- число Рейнольдса.
+где $\mu$ -- вязкость жидкости;\newline
+$Q_0$ -- расход закачиваемой жидкости на забое;\newline
+$Q_j$ -- расход жидкости на $j$-ой трещине;\newline
+$R_i$ -- радиус участка трубы к $i$-ой трещине;\newline
+$S_i=\pi R_i^2$ -- площадь сечения участка трубы к $i$-ой трещине.
+\end{textblock*}
+\normalsize
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Замкнутая постановка задачи}
+\small
+\begin{textblock*}{11cm}(1cm,1.5cm)
+$$
+\begin{cases}
+	\displaystyle Q_0=\sum\limits_{i=1}^{N}Q_i,\\
+	\displaystyle p_0=\sigma_{\text{min},i}+p_{\text{net},i}+\Delta p_{\text{perf},i}-\sum_{j=1}^{i}{\Delta p_{h,j}}+\sum_{j=1}^{i}\Delta p_{\text{fric},j},\\[10pt]
+	\displaystyle p_{\text{net},i}=\sqrt{\dfrac{8K_{Ic,i}^2}{\pi h_{f,i}}},\\[15pt]
+	\displaystyle \Delta p_{\text{perf},i}=\dfrac{8\rho_s}{\pi^2 C_{d,i}^2 n_{p,i}^2 d_{p,i}^4}Q_i\left|Q_i\right|,\\[15pt]
+	\displaystyle \Delta p_{\text{fric}, j}=\int\limits_{x_{j-1}}^{x_j}{\dfrac{8\mu\left(Q_0-\sum\limits_{k=1}^{j-1}{Q_k}\right)}{R_j^2(s)S_j(s)}}ds,\\[20pt]
+	\displaystyle \Delta p_{h,j}=0.
+\end{cases}
+$$
+\end{textblock*}
 \normalsize
 \end{frame}
 
@@ -469,6 +513,27 @@ $\left|\overline{Q}^{k+1}-\overline{Q}^k\right|^2\leqslant10^{-4}$
 \end{frame}
 
 
+\begin{frame}
+\frametitle{Итеративный процесс поиска расходов на трещинах и забойного давления}
+
+\begin{textblock*}{11.6cm}(0.7cm,2.3cm)
+%\tiny Подпись к рисунку
+\includegraphics[width=11.6cm]{flows_distribution_between_fractures_1.jpg}
+\end{textblock*}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Распределение давления вдоль горизонтального участка скважины}
+
+\begin{textblock*}{11cm}(1cm,1.7cm)
+%\tiny Подпись к рисунку
+\includegraphics[width=9.5cm]{pressure_distribution.jpg}
+\end{textblock*}
+
+\end{frame}
+
 %\begin{frame}
 %\frametitle{Пример результатов решателя уравнений Кирхгофа}
 
@@ -476,26 +541,34 @@ $\left|\overline{Q}^{k+1}-\overline{Q}^k\right|^2\leqslant10^{-4}$
 
 
 \begin{frame}
-\frametitle{Формула Кёнинга}
-Зависимость полудлины трещины автоГРП от расхода жидкости, репрессии на пласт и фильтрационно-ёмкостных свойств пласта:
-$$
-x_{\!f}=\frac{Q\mu\sqrt{\pi\kappa t}}{2\pi k_eh\left(p_{\!f}-p_e\right)},
-\vspace*{-3mm}
-$$
+\frametitle{Формулы Кёнинга}
 \small
+\begin{textblock*}{11cm}(0.7cm,1.3cm)
+\begin{tabular}{|p{4.3cm}|p{5.9cm}|}
+\hline
+В случае одномерных утечек Картера & В случае двумерных радиальных утечек жидкости из трещины в пласт\\
+\hline
+$$x_{\!f}=\frac{Q\mu\sqrt{\pi\kappa t}}{2\pi k_eh\left(p_{\!f}-p_e\right)}
+\vspace*{-3mm}$$ & $$x_{\!f}=3\exp{\!\left(-\frac{2\pi k_e h\left(p_{\!f}-p_e\right)}{Q\mu}\right)}\sqrt{\kappa t}$$ \\
+\hline
+\end{tabular}
+\end{textblock*}
+
+\begin{textblock*}{11cm}(0.7cm,4.5cm)
 где
 $\kappa=\dfrac{k_e}{\varphi_e\mu c_t}$ -- пьезопроводность пласта;\newline
 
 $Q$ -- расход нагнетаемой в рассматриваемую трещину жидкости;\newline
-$\mu$ -- вязкость жидкости;\newline
-$t$ -- время закачки;
-$k_e$ и $\varphi_e$ -- проницаемость и пористость пласта соответственно;
+$\mu$ -- вязкость жидкости;
+$t$ -- время закачки;\newline
+$k_e$ и $\varphi_e$ -- проницаемость и пористость пласта соответственно;\newline
 $c_t$ -- общая сжимаемость;
 $h$ -- эффективная толщина (мощность) пласта;
-$\Delta p=p_f-p_e$ -- разница между средним давлением в трещине и пластовым давлением.
+$\Delta p=p_{\!f}-p_e$ -- разница между средним давлением в трещине и пластовым давлением.
+\end{textblock*}
 \normalsize
 
-\begin{textblock*}{6cm}(0.5cm,8.9cm)
+\begin{textblock*}{10cm}(0.7cm,8.7cm)
 \tiny
 \textcolor{lit_gray}{E.J.L. Koning. Fractured water-injection wells. Analytical modelling of fracture propagation. SPE 14684, 1985}
 \end{textblock*}
@@ -507,43 +580,62 @@ $\Delta p=p_f-p_e$ -- разница между средним давление�
 
 
 \begin{frame}
-\frametitle{Приращение полудлины трещины}
-
-Полная производная полудлины трещины $x_{\!f}$ по времени $t$:
+\frametitle{Полная производная полудлины трещин по времени}
+\small
+\begin{textblock*}{11cm}(0.7cm,1.3cm)
+Общий вид полной производной полудлины трещины $x_{\!f}$ по времени $t$:
 $$
-\frac{dx_{\!f}}{dt}=\frac{\partial x_{\!f}}{\partial t}+\frac{\partial x_{\!f}}{\partial Q}\frac{dQ}{dt}+\frac{\partial x_{\!f}}{\partial p_{\!f}}\frac{dp_{\!f}}{dt},
-$$
-где
-$$
-\frac{\partial x_{\!f}}{\partial t}=\frac{Q\mu}{4\pi k_eh\left(p_{\!f}-p_e\right)}\sqrt{\frac{\pi\kappa}{t}}\,\,\,\,\,;\,\,\,\,\,\frac{\partial x_{\!f}}{\partial Q}=\frac{\mu\sqrt{\pi\kappa t}}{2\pi k_eh\left(p_{\!f}-p_e\right)};
+\frac{dx_{\!f}}{dt}=\frac{\partial x_{\!f}}{\partial t}+\frac{\partial x_{\!f}}{\partial Q}\frac{dQ}{dt}+\frac{\partial x_{\!f}}{\partial (p_{\!f}-p_e)}\frac{d(p_{\!f}-p_e)}{dt}
 $$
 
+Полная производная полудлины трещины $x_{\!f}$ по времени $t$ в случае одномерных утечек Картера:
 $$
-\frac{\partial x_{\!f}}{\partial p_{\!f}}=-\frac{Q\mu\sqrt{\pi\kappa t}}{2\pi k_eh\left(p_{\!f}-p_e\right)^2}
+\frac{dx_{\!f}}{dt}=\frac{\mu}{2\pi k_e h(p_{\!f}-p_e)}\left(\frac{Q}{2}\sqrt{\frac{\pi\kappa}{t}}+\sqrt{\pi\kappa t}\,\frac{dQ}{dt}-\frac{Q\sqrt{\pi\kappa t}}{\left(p_{\!f}-p_e\right)}\frac{d(p_{\!f}-p_e)}{dt}\right)
 $$
+
+Полная производная полудлины трещины $x_{\!f}$ по времени $t$ в случае двумерных радиальных утечек жидкости из трещины в пласт:
+$$
+\begin{gathered}
+\frac{dx_{\!f}}{dt}=\exp{\!\left(-\frac{2\pi k_e h\left(p_{\!f}-p_e\right)}{Q\mu}\right)}\left(\frac{3}{2}\sqrt{\frac{\kappa}{t}}\,+\right.\\[10pt]
++\left.\frac{6\pi k_e h\left(p_{\!f}-p_e\right)}{Q^2\mu}\sqrt{\kappa t}\,\frac{dQ}{dt}-\frac{6\pi k_e h}{Q\mu}\sqrt{\kappa t}\,\frac{d(p_{\!f}-p_e)}{dt}\right)
+\end{gathered}
+$$
+\end{textblock*}
 \end{frame}
 
 
 \begin{frame}
-\frametitle{Приращение полудлины трещины}
-
-Полная производная полудлины трещины $x_{\!f}$ по времени $t$:
+\frametitle{Приращение полудлины трещин}
 \small
-$$
-\frac{dx_{\!f}}{dt}=\frac{Q\mu}{4\pi k_eh\left(p_{\!f}-p_e\right)}\sqrt{\frac{\pi\kappa}{t}}\,+\,\frac{\mu\sqrt{\pi\kappa t}}{2\pi k_eh\left(p_{\!f}-p_e\right)}\frac{dQ}{dt}\,-\,\frac{Q\mu\sqrt{\pi\kappa t}}{2\pi k_eh\left(p_{\!f}-p_e\right)^2}\frac{dp_{\!f}}{dt}
-$$
-\normalsize
-\ \\
-
-Приращение полудлины трещины на каждом шаге по времени:
+\begin{textblock*}{11cm}(0.7cm,1.3cm)
+Приращение полудлины трещины на каждом шаге по времени в общем виде:
 $$
 dx_{\!f}=\frac{dx_{\!f}}{dt}dt
 $$
-\small
+Приращение полудлины трещины на каждом шаге по времени в случае одномерных утечек Картера:
 $$
-dx_{\!f}=\underbrace{\frac{Q\mu}{4\pi k_eh\left(p_{\!f}-p_e\right)}\sqrt{\frac{\pi\kappa}{t}}dt}_{\text{за счёт изменения времени}}\,+\,\underbrace{\frac{\mu\sqrt{\pi\kappa t}}{2\pi k_eh\left(p_{\!f}-p_e\right)}dQ}_{\substack{\text{за счёт изменения расхода}\\\text{на трещине}}}\,-\,\underbrace{\frac{Q\mu\sqrt{\pi\kappa t}}{2\pi k_eh\left(p_{\!f}-p_e\right)^2}dp_{\!f}}_{\substack{\text{за счёт изменения давления}\\\text{в трещине}}}
+dx_{\!f}=\frac{\mu}{2\pi k_e h(p_{\!f}-p_e)}\left(\frac{Q}{2}\sqrt{\frac{\pi\kappa}{t}}dt+\sqrt{\pi\kappa t}\,dQ-\frac{Q\sqrt{\pi\kappa t}}{\left(p_{\!f}-p_e\right)}d(p_{\!f}-p_e)\right)
 $$
+Приращение полудлины трещины на каждом шаге по времени в случае двумерных радиальных утечек жидкости из трещины в пласт:
+$$
+\begin{gathered}
+dx_{\!f}=\exp{\!\left(-\frac{2\pi k_e h\left(p_{\!f}-p_e\right)}{Q\mu}\right)}\left(\frac{3}{2}\sqrt{\frac{\kappa}{t}}dt\,+\right.\\[10pt]
++\left.\frac{6\pi k_e h\left(p_{\!f}-p_e\right)}{Q^2\mu}\sqrt{\kappa t}\,dQ-\frac{6\pi k_e h}{Q\mu}\sqrt{\kappa t}\,d(p_{\!f}-p_e)\right)
+\end{gathered}
+$$
+\end{textblock*}
 \normalsize
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Алгоритм расчёта полудлин трещин в зависимости от времени}
+
+\begin{textblock*}{12cm}(0.5cm,1.6cm)
+%\tiny Подпись к рисунку
+\includegraphics[width=12cm]{koning_scheme.jpg}
+\end{textblock*}
 
 \end{frame}
 
@@ -558,29 +650,27 @@ $$
 \begin{center}
 \begin{tabular}{|p{4cm}|c|p{4.3cm}|c|}
 \hline
-Расход на забое $Q_0$, м$^3$/сут & 800 & Мощность пласта$^{*}$, м & 2 \\
+Расход на забое $Q_0$, м$^3$/сут & 1000 & Высота трещины$^{*}$, равная мощности пласта, м & 15 \\
 \hline
-Вязкость воды $\mu$, Па$\cdot$с & $10^{-3}$ & Количество перфораций$^{*}$ $n_p$ & 32 \\
+Количество трещин (портов) & 4 & Количество перфораций$^{*}$ $n_p$ & 32 \\
 \hline
-Геометрический параметр трещины $\phi$ & 0.3 & Диаметр перфораций$^{*}$ $d_p$, м & $0.02$ \\
+Вязкость воды $\mu$, Па$\cdot$с & $10^{-3}$ & Диаметр перфораций$^{*}$ $d_p$, м & $0.02$ \\
 \hline
-Плотность воды $\rho$, кг/м$^3$ & 1000 & Безразмерный коэффициент эрозии$^{*}$ $C_d$ & 0.7 \\
+Плотность воды $\rho$, кг/м$^3$ & 1000 & Безразмерный коэффициент эрозии перфораций$^{*}$ $C_d$ & 0.5 \\
 \hline
 Проницаемость пласта $k_e$, мДарси & 1 & Радиус участков трубы$^{*}$ $R$, м & 0.08 \\
 \hline
 Пористость пласта $\varphi_e$ & 0.2 & Длина участков трубы$^{*}$ $L$, м & 100 \\
 \hline
-Общая сжимаемость $c_t$, Па$^{-1}$ & $2.2\cdot10^{-9}$ & Давление смыкания$^{*}$ $\sigma_{\text{min}}$, МПа & 10 \\
+Общая сжимаемость $c_t$, Па$^{-1}$ & $2.2\cdot10^{-9}$ & Давление смыкания$^{*}$ $\sigma_{\text{min}}$, МПа & 40 \\
 \hline
-Пластовое давление $p_e$, МПа & 9 & Трещиностойкость породы$^{*}$ $K_{Ic}$, Па$\cdot\text{м}^{1/2}$ & $10^6$ \\
-\hline
-Модуль плоской деформации породы$^{*}$ $E'$, МПа & $10^4$ & Количество трещин & 4 \\
+Пластовое давление $p_e$, МПа & 25 & Трещиностойкость породы$^{*}$ $K_{Ic}$, Па$\cdot\text{м}^{1/2}$ & $10^6$ \\
 \hline
 \end{tabular}
 \end{center}
 \end{textblock*}
 
-\begin{textblock*}{6cm}(0.5cm,9.2cm)
+\begin{textblock*}{6cm}(0.5cm,9cm)
 \scriptsize
 \textcolor{lit_gray}{* -- для всех трещин}
 \end{textblock*}
@@ -593,46 +683,83 @@ $$
 \begin{frame}
 \frametitle{Результат совместного использования формулы Кёнинга с решателем уравнений Кирхгофа}
 
-\begin{textblock*}{8cm}(0.3cm,1.6cm)
-\includegraphics[width=8cm]{experiment_example1_300dpi.jpg}
+\begin{textblock*}{7.5cm}(0.3cm,1.8cm)
+\includegraphics[width=7.5cm]{myimage1.jpg}
 \end{textblock*}
 
-\begin{textblock*}{4cm}(8.8cm,3cm)
-\footnotesize
-Трещина 1 рассчитана с выбранными значениями входных параметров задачи.\\
-
-На остальных трещинах ухудшены параметры перфораций.\\
-
-$n_{p,2}=2;\,\,\,d_{p,2}=0.01\text{ м}$\\
-
-$n_{p,3}=1;\,\,\,d_{p,3}=0.01\text{ м}$\\
-
-$n_{p,4}=32;\,\,\,d_{p,4}=0.001\text{ м}$\\
-
-\normalsize
+\begin{textblock*}{8cm}(8.4cm,1.6cm)
+\adjustbox{trim={0\width} {0\height} {0.51\width} {0\height},clip}%
+  {\includegraphics[width=8cm]{myimage14.jpg}}
 \end{textblock*}
 
 \end{frame}
 
 
 \begin{frame}
-\frametitle{Влияние резкого ухудшения качества перфораций на рост трещин}
+\frametitle{Сравнение роста трещин при одномерных утечках Картера и при двумерных радиальных утечках жидкости}
 
 \begin{textblock*}{8cm}(0.3cm,1.6cm)
-\includegraphics[width=8cm]{experiment_example2_300dpi.jpg}
+\includegraphics[width=8cm]{myimage3.jpg}
 \end{textblock*}
 
-\begin{textblock*}{4cm}(8.8cm,1.5cm)
-\footnotesize
-Первые 50 секунд расчёт всех трещин проводился с выбранными значениями параметров задачи.\\
+\begin{textblock*}{8cm}(8.4cm,1.6cm)
+\adjustbox{trim={0\width} {0\height} {0.51\width} {0\height},clip}%
+  {\includegraphics[width=8cm]{myimage4.jpg}}
+\end{textblock*}
 
-При $t=50\text{ с}$ ухудшено качество перфораций на второй трещине: $n_{p,2}=2;\,\,\,d_{p,2}=0.01\text{ м}$.\\
+\end{frame}
 
-При $t=100\text{ с}$ ухудшено качество перфораций на третьей трещине: $n_{p,3}=1;\,\,\,d_{p,3}=0.01\text{ м}$.\\
 
-При $t=150\text{ с}$ ухудшено качество перфораций на четвёртой трещине: $n_{p,4}=32;\,\,\,d_{p,4}=0.001\text{ м}$.\\
+\begin{frame}
+\frametitle{Результаты при линейном уменьшении расхода жидкости на забое скважины}
 
-\normalsize
+\begin{textblock*}{8cm}(0.3cm,1.6cm)
+\includegraphics[width=8cm]{myimage5.jpg}
+\end{textblock*}
+
+\begin{textblock*}{8cm}(8.4cm,1.6cm)
+\adjustbox{trim={0\width} {0\height} {0.51\width} {0\height},clip}%
+  {\includegraphics[width=8cm]{myimage6.jpg}}
+\end{textblock*}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Результаты при ухудшении качества перфораций на одной из трещин}
+
+\begin{textblock*}{8cm}(0.3cm,1.6cm)
+\includegraphics[width=8cm]{myimage7.jpg}
+\end{textblock*}
+
+\begin{textblock*}{8cm}(8.4cm,1.6cm)
+\adjustbox{trim={0\width} {0\height} {0.51\width} {0\height},clip}%
+  {\includegraphics[width=8cm]{myimage8.jpg}}
+\end{textblock*}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Результаты при уменьшении горизонтальных напряжений в пласте}
+
+\begin{textblock*}{8cm}(0.3cm,1.6cm)
+\includegraphics[width=8cm]{myimage11.jpg}
+\end{textblock*}
+
+\begin{textblock*}{8cm}(8.4cm,1.6cm)
+\adjustbox{trim={0\width} {0\height} {0.51\width} {0\height},clip}%
+  {\includegraphics[width=8cm]{myimage12.jpg}}
+\end{textblock*}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Результаты при одновременном росте шести трещин}
+
+\begin{textblock*}{8cm}(2.5cm,1.1cm)
+\includegraphics[width=8cm]{myimage13.jpg}
 \end{textblock*}
 
 \end{frame}
@@ -644,15 +771,15 @@ $n_{p,4}=32;\,\,\,d_{p,4}=0.001\text{ м}$\\
 \small
 
 \begin{itemize}
-	\item Проведён обзор моделей трещины гидроразрыва пласта
 	\item Реализован численный алгоритм расчёта потоков на каждой из трещин по правилам Кирхгофа (при любом количестве трещин)
-	\item Реализован алгоритм расчёта приращения полудлины трещины на каждом шаге по времени с учётом изменяющихся расходов и давления в трещинах (при любом количестве трещин)
-	\item Сделан вывод, что внезапное ухудшение качества перфораций на одной из трещин может привести к неконтролируемому росту соседних трещин при фиксированном расходе на забое
+	\item Реализован алгоритм расчёта приращения полудлины трещины на каждом шаге по времени с учётом изменяющихся расходов на трещинах (при любом количестве трещин)
+	\item Проведён анализ результатов:
+	\begin{enumerate}[--]
+	\item уменьшение диаметра перфораций на одной из трещин приводит к постепенному закрытию этой трещины и одновременному более интенсивному росту соседних трещин;
+	\item уменьшение расхода на забое скважины приводит к уменьшению расходов на трещинах и сокращению их длины;
+	\item термоупругое уменьшение горизонтальных напряжений в пласте приводит к более интенсивному росту трещин автоГРП
+	\end{enumerate}
 \end{itemize}
-\ \\
-
-В дальнейшем необходимо дополнить построенную модель: учесть эффекты пороупругости, когда большие утечки из трещин влияют на упругое состояние породы и тем самым влияют на соседние трещины.
-В этом случае может происходить эффект закрытия трещин автоГРП.
 
 \normalsize
 
