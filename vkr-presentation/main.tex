@@ -18,6 +18,7 @@
 \setmainfont{Times New Roman}
 \setsansfont{Times New Roman}
 \setmonofont{Consolas}
+\renewcommand\fbox{\fcolorbox{blue}{white}}
 
 \usepackage{tcolorbox}
 \usepackage{amsmath}
@@ -381,7 +382,7 @@ $$\boxed{Q_0=\sum\limits_{i=1}^{N}Q_i}$$
 \end{textblock*}
 
 \begin{textblock*}{11cm}(2.2cm,7.5cm)
-$$\boxed{p_0=\sigma_{\text{min},i}+p_{\text{net},i}+\Delta p_{\text{perf},i}-\sum_{j=1}^{i}{\Delta p_{h,\,j}}+\sum_{j=1}^{i}\Delta p_{\text{fric},\,j}}$$
+$$\boxed{p_0=\underbrace{\sigma_{\text{min},i}+p_{\text{net},i}}_{p_{\text{frac},i}}+\Delta p_{\text{perf},i}-\sum_{j=1}^{i}{\Delta p_{h,\,j}}+\sum_{j=1}^{i}\Delta p_{\text{fric},\,j}}$$
 \end{textblock*}
 
 \end{frame}
@@ -453,7 +454,7 @@ $S_i=\pi R_i^2$ -- площадь сечения участка трубы к $i
 \begin{frame}
 \frametitle{Замкнутая постановка задачи}
 \small
-\begin{textblock*}{11cm}(1cm,1.5cm)
+\begin{textblock*}{11cm}(0.3cm,1.5cm)
 $$
 \begin{cases}
 	\displaystyle Q_0=\sum\limits_{i=1}^{N}Q_i,\\
@@ -465,12 +466,19 @@ $$
 \end{cases}
 $$
 \end{textblock*}
+
+\begin{textblock*}{11cm}(8cm,5cm)
+	\fbox{\begin{minipage}{9em}
+		Неизвестные:\\$Q_1$, $Q_2$, ..., $Q_N$, $p_0$.
+	\end{minipage}}
+\end{textblock*}
+
 \normalsize
 \end{frame}
 
 
 \begin{frame}
-\frametitle{Запись правил Кирхгофа в векторной форме}
+\frametitle{Вектор невязок}
 
 Вектор неизвестных:
 $$Q^T=\left[Q_1,Q_2,...,Q_N,p_0\right]$$
@@ -687,9 +695,11 @@ $$
 \includegraphics[width=7.5cm]{myimage1.jpg}
 \end{textblock*}
 
-\begin{textblock*}{8cm}(8.4cm,1.6cm)
+\begin{textblock*}{8cm}(8.1cm,1.1cm)
+\fbox{\begin{minipage}{10.8em}
 \adjustbox{trim={0\width} {0\height} {0.51\width} {0\height},clip}%
-  {\includegraphics[width=8cm]{myimage14.jpg}}
+  {\includegraphics[width=7.7cm]{myimage14.jpg}}
+\end{minipage}}
 \end{textblock*}
 
 \end{frame}
@@ -702,7 +712,7 @@ $$
 \includegraphics[width=8cm]{myimage3.jpg}
 \end{textblock*}
 
-\begin{textblock*}{8cm}(8.4cm,1.6cm)
+\begin{textblock*}{8cm}(8.3cm,1.6cm)
 \adjustbox{trim={0\width} {0\height} {0.51\width} {0\height},clip}%
   {\includegraphics[width=8cm]{myimage4.jpg}}
 \end{textblock*}
@@ -717,7 +727,7 @@ $$
 \includegraphics[width=8cm]{myimage5.jpg}
 \end{textblock*}
 
-\begin{textblock*}{8cm}(8.4cm,1.6cm)
+\begin{textblock*}{8cm}(8.3cm,1.6cm)
 \adjustbox{trim={0\width} {0\height} {0.51\width} {0\height},clip}%
   {\includegraphics[width=8cm]{myimage6.jpg}}
 \end{textblock*}
@@ -732,7 +742,7 @@ $$
 \includegraphics[width=8cm]{myimage7.jpg}
 \end{textblock*}
 
-\begin{textblock*}{8cm}(8.4cm,1.6cm)
+\begin{textblock*}{8cm}(8.3cm,1.6cm)
 \adjustbox{trim={0\width} {0\height} {0.51\width} {0\height},clip}%
   {\includegraphics[width=8cm]{myimage8.jpg}}
 \end{textblock*}
@@ -747,7 +757,7 @@ $$
 \includegraphics[width=8cm]{myimage11.jpg}
 \end{textblock*}
 
-\begin{textblock*}{8cm}(8.4cm,1.6cm)
+\begin{textblock*}{8cm}(8.3cm,1.6cm)
 \adjustbox{trim={0\width} {0\height} {0.51\width} {0\height},clip}%
   {\includegraphics[width=8cm]{myimage12.jpg}}
 \end{textblock*}
@@ -769,17 +779,19 @@ $$
 \frametitle{Выводы}
 
 \small
-
+\begin{textblock*}{12cm}(0.3cm,1.1cm)
 \begin{itemize}
 	\item Реализован численный алгоритм расчёта потоков на каждой из трещин по правилам Кирхгофа (при любом количестве трещин)
 	\item Реализован алгоритм расчёта приращения полудлины трещины на каждом шаге по времени с учётом изменяющихся расходов на трещинах (при любом количестве трещин)
 	\item Проведён анализ результатов:
 	\begin{enumerate}[--]
+	\item падение давления на трение в трубе приводит к существенной разнице расходов на нескольких трещинах автоГРП и, как следствие, трещина, расположенная близко к забою, растёт более интенсивно 
 	\item уменьшение диаметра перфораций на одной из трещин приводит к постепенному закрытию этой трещины и одновременному более интенсивному росту соседних трещин;
 	\item уменьшение расхода на забое скважины приводит к уменьшению расходов на трещинах и сокращению их длины;
 	\item термоупругое уменьшение горизонтальных напряжений в пласте приводит к более интенсивному росту трещин автоГРП
 	\end{enumerate}
 \end{itemize}
+\end{textblock*}
 
 \normalsize
 
