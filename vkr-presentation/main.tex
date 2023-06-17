@@ -20,6 +20,7 @@
 \setmonofont{Consolas}
 \renewcommand\fbox{\fcolorbox{blue}{white}}
 
+\usepackage{array}
 \usepackage{tcolorbox}
 \usepackage{amsmath}
 \usepackage{tikz}
@@ -31,6 +32,9 @@
 \newminted{python}{fontsize=\scriptsize, linenos=false}
 
 \graphicspath{{../images/}}
+
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
 
 \title{Моделирование перераспределения потоков между трещинами гидроразрыва пласта}
 \subtitle{}
@@ -44,13 +48,25 @@
 %}
 
 \definecolor{new_green}{rgb}{0.20,0.68,0}
-\definecolor{lit_gray}{gray}{0.3}
+\definecolor{lit_gray}{cmyk}{0.7, 0.7, 0, 0}
+
+
 
 \begin{document}
 
 
 \begin{frame}
+\vspace*{20mm}
 \titlepage
+
+\begin{textblock*}{128mm}(0cm,0.2cm)
+\begin{center}
+Санкт-Петербургский политехнический	университет Петра Великого\\
+Физико-Механический институт\\
+Высшая школа теоретической механики и математической физики
+\end{center}
+\end{textblock*}
+
 \end{frame}
 
 
@@ -392,26 +408,50 @@ $$\boxed{p_0=\underbrace{\sigma_{\text{min},i}+p_{\text{net},i}}_{p_{\text{frac}
 
 
 \begin{frame}
-\frametitle{Чистое давление в трещинах PKN}
+\frametitle{Замыкающие соотношения}
+\footnotesize
 
-\begin{textblock*}{11cm}(1cm,2cm)
-Чистое давление в распространяющихся трещинах PKN (условие роста трещин):
-$$
-p_{\text{net},i}=\sqrt{\frac{8K_{Ic,i}^2}{\pi h_{f,i}}},
-$$
-где $K_{Ic,i}$ -- трещиностойкость породы вблизи кончика $i$-ой трещины,\newline
-$h_{f,i}=H$ -- высота трещин (для PKN модели равна мощности продуктивной зоны).
+\begin{textblock*}{11cm}(0.7cm,1cm)
+\begin{tabular}{|C{5.5cm}|C{4.9cm}|}
+\hline
+Чистое давление в распространяющихся трещинах PKN (условие роста трещин)& \vspace*{-4.5mm}$$p_{\text{net},i}=\sqrt{\frac{8K_{Ic,i}^2}{\pi h_{f,i}}}$$\vspace*{-3mm}\\
+\hline
+Падение давления на перфорациях & \vspace*{-4mm}$$\Delta p_{\text{perf},i}=\frac{8\rho_s}{\pi^2\,C_{d,i}^2\,n_{p,i}^2 \,d_{p,i}^4}Q_i\left|Q_i\right|$$ \vspace*{-3mm}\\
+\hline
+Падение давления на трение при ламинарном режиме течения & \vspace*{-4mm}$$\Delta p_{\text{fric}, i}=\int\limits_{x_{i-1}}^{x_i}{\frac{8\mu\left(Q_0-\sum\limits_{j=1}^{i-1}{Q_j}\right)}{R_i^2(s)S_i(s)}}ds$$ \vspace*{-4mm}\\
+\hline
+\end{tabular}
 \end{textblock*}
 
-\begin{textblock*}{11cm}(1cm,8cm)
+
+\begin{textblock*}{11.2cm}(0.7cm,5.55cm)
 \scriptsize
+$K_{Ic,i}$ -- трещиностойкость породы вблизи кончика $i$-ой трещины;
+$h_{f,i}=H$ -- высота трещин (для PKN модели равна мощности пласта);\\
+$\rho_s$ и $\mu$ -- плотность и вязкость закачиваемой жидкости соответственно;\\
+$n_{p,i}$ и $d_{p,i}$ -- количество и диаметр перфораций соответственно;
+$C_{d,i}$ -- безразмерный коэффициент эрозии перфораций (при закачке воды равен 0.5);\\
+$Q_0$ -- расход закачиваемой жидкости на забое;
+$Q_j$ -- расход жидкости на $j$-ой трещине;\\
+$R_i$ -- радиус участка трубы к $i$-ой трещине;\\
+$S_i=\pi R_i^2$ -- площадь сечения участка трубы к $i$-ой трещине.
+\end{textblock*}
+
+\begin{textblock*}{11.2cm}(0.7cm,8.4cm)
+\tiny
 \textcolor{lit_gray}{P.A. Kabanova, E.V. Shel. Modeling of Water-Induced Fracture Growth Pressure Using Poroelastic Approach. — ECMOR XVII – 17th European Conference on the Mathematics of Oil Recovery, 2020}
 \end{textblock*}
+
+\begin{textblock*}{11.2cm}(0.7cm,9.0cm)
+\tiny
+\textcolor{lit_gray}{J.B. Crump, M.W. Conway. Effects of Perforation-Entry Friction on Bottomhole Treating Analysis. — Journal of Petroleum Technology, August 1988}
+\end{textblock*}
+
 \normalsize
 
 \end{frame}
 
-
+\begin{comment}
 \begin{frame}
 \frametitle{Падение давления на перфорациях}
 \begin{textblock*}{11cm}(1cm,2cm)
@@ -452,6 +492,7 @@ $S_i=\pi R_i^2$ -- площадь сечения участка трубы к $i
 \end{textblock*}
 \normalsize
 \end{frame}
+\end{comment}
 
 
 \begin{frame}
